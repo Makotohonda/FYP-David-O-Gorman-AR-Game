@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Windows.Speech;
-using System.Linq;
 
 namespace HoloToolkit.Unity.InputModule
 {
@@ -16,8 +16,8 @@ namespace HoloToolkit.Unity.InputModule
         private KeywordRecognizer keywordRecognizer;
         private Dictionary<string, Action> actions = new Dictionary<string, Action>();
 
-
-        int score;
+        public int roundNm = 1;
+        public int score;
         int playerHealth = 100;
         public Text scoreText;
         public Text gameOverText;
@@ -35,6 +35,11 @@ namespace HoloToolkit.Unity.InputModule
         public AudioClip yes;
         public AudioClip no;
         GameObject culling;
+        bool isCreated = false;
+
+        public float speed = 1f;
+        public Text roundText;
+        public Text RoundUI;
         // Use this for initialization
         void Start()
         {
@@ -61,13 +66,11 @@ namespace HoloToolkit.Unity.InputModule
         // Update is called once per frame
         void Update()
         {
-            if (score > 10)
-            {
-
-            }
+           
             if (spawn == true)
             {
                 spawnButtons();
+                isCreated = false;
                 // gameHalt = false;
               //  spawn = false;
             }
@@ -112,26 +115,32 @@ namespace HoloToolkit.Unity.InputModule
         {
             playerHealth = 100;
             score = 0;
+            roundNm = 1;
             gameOverText.text = "";
             restartText.text = "";
-            culling.GetComponent<cull>().gameOver = true;
+          //  culling.GetComponent<cull>().gameOver = true;
         }
 
         public void spawnButtons()
         {
             if (spawn == true)
             {
-                gameOverText.text = "Game Over!";
-                restartText.text = "Try Again?";
-                // Instantiate(yesBox, yesBox.transform.position, yesBox.transform.rotation);
-                GameObject yesBox1 = Instantiate(yesBox, yesBox.transform.position, yesBox.transform.rotation);
-                yesBox.transform.position = new Vector3(position1.x, position1.y + transform.localScale.y / 2, position1.z);
+                if (!isCreated)
+                {
+                    gameOverText.text = "Game Over!";
+                    restartText.text = "Try Again?";
+                    // Instantiate(yesBox, yesBox.transform.position, yesBox.transform.rotation);
+                    GameObject yesBox1 = Instantiate(yesBox, yesBox.transform.position, yesBox.transform.rotation);
+                    yesBox.transform.position = new Vector3(position1.x, position1.y + transform.localScale.y / 2, position1.z);
 
-                GameObject noBox1 = Instantiate(noBox, noBox.transform.position, noBox.transform.rotation);
-                noBox.transform.position = new Vector3(position2.x, position2.y + transform.localScale.y / 2, position2.z);
-                //  Instantiate(noBox, 0,0,0);
-                //   gameHalt = false;
-                spawn = false;
+                    GameObject noBox1 = Instantiate(noBox, noBox.transform.position, noBox.transform.rotation);
+                    noBox.transform.position = new Vector3(position2.x, position2.y + transform.localScale.y / 2, position2.z);
+                    //  Instantiate(noBox, 0,0,0);
+                    //   gameHalt = false;
+                    spawn = false;
+                    roundNm = 1;
+                    isCreated = true;
+                }
             }
 
         }
@@ -144,14 +153,14 @@ namespace HoloToolkit.Unity.InputModule
             //{
 
         
-            if (collision.gameObject.tag == "Yes")
-            {
-                RestartGame();
-                Destroy(yesBox);
-                //Debug.Log("HITHITHITHITHITHITHIT");
-                gameHalt = false;
+            //if (collision.gameObject.tag == "Yes")
+            //{
+            //    RestartGame();
+            //    Destroy(yesBox);
+            //    //Debug.Log("HITHITHITHITHITHITHIT");
+            //    gameHalt = false;
                 
-            }
+            //}
         }
 
         public void YesCall()
@@ -174,6 +183,27 @@ namespace HoloToolkit.Unity.InputModule
                 //Debug.Log("HITHITHITHITHITHITHIT");
                 gameHalt = false;
             }
+        }
+
+
+        public IEnumerator round()
+        {
+            roundNm++;
+            string roundString = "Round: " + roundNm.ToString();
+            string roundUIString = "Round: " + roundNm.ToString();
+            roundText.enabled = true;
+
+            roundText.text = roundString;
+            RoundUI.text = roundUIString;
+            if (roundNm == 1)
+            {
+                speed = 1f;
+            }
+            speed += .5f;
+            yield return new WaitForSeconds(5);
+            roundText.enabled = false;
+
+
         }
     }
 }

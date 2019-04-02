@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 namespace HoloToolkit.Unity.InputModule
 {
 
@@ -8,6 +10,8 @@ namespace HoloToolkit.Unity.InputModule
     {
         GameObject manager;
         // Use this for initialization
+        public AudioClip damage;
+
         void Start()
         {
             manager = GameObject.FindWithTag("GameManager");
@@ -23,6 +27,7 @@ namespace HoloToolkit.Unity.InputModule
             if (collision.gameObject.tag == "Cube")
             {
                 manager.GetComponent<GameManager>().DecreaseHealth(10);
+             //   damage.Play();
             }
 
         }

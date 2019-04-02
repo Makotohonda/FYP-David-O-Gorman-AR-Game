@@ -23,12 +23,10 @@ namespace HoloToolkit.Unity.InputModule
         private bool restart;
         public Text restartText;
         public GameManager script2;
-        int roundNm = 1;
-        public Text roundText;
-        public Text RoundUI;
+       
+       
         AudioSource audioS;
         public AudioClip spawn;
-        public float speed = 1f;
         //  Color zm;
 
 
@@ -55,12 +53,13 @@ namespace HoloToolkit.Unity.InputModule
         {
 
 
-            float step = speed * Time.deltaTime;
+            float step = script2.speed * Time.deltaTime;
             for (int i = 0; i < numObjects; i++)
             {
                 if (objs[i] != null)
                 {
                     objs[i].transform.position = Vector3.MoveTowards(objs[i].transform.position, OtherObject.transform.position, step);
+                    objs[i].transform.LookAt(OtherObject.transform.position);
                 }
             }
 
@@ -71,7 +70,7 @@ namespace HoloToolkit.Unity.InputModule
 
                 //gameOver = true;
                   Debug.Log("GAME OVER GAME OVER GAME OVER");
-                  roundNm = 1;
+                  script2.roundNm = 1;
                 //StopCoroutine(c);
                 //break;
             }
@@ -98,7 +97,7 @@ namespace HoloToolkit.Unity.InputModule
                 //gameOver = true;
                 //  Debug.Log("GAME OVER GAME OVER GAME OVER");
                 yield return new WaitForSeconds(1);
-                roundNm = 1;
+                script2.roundNm = 1;
                 StopCoroutine(b);
                 //break;
             }
@@ -108,8 +107,7 @@ namespace HoloToolkit.Unity.InputModule
         {
             //Coroutine c = StartCoroutine(spawner());
             Vector3 center = transform.position;
-            //int angle = rnd.Next(0, 359);
-
+           
             for (int i = 0; i < numObjects; i++)
             {
 
@@ -119,43 +117,49 @@ namespace HoloToolkit.Unity.InputModule
                 Vector3 pos = RandomCircle(center, 1.0f, a);
                 yield return new WaitForSeconds(3);
                 //  Debug.Log("Test");
-
+                
                 int b = Random.Range(-0, 6);
 
                 if (b == 0)
                 {
-                    AudioSource.PlayClipAtPoint(spawn, this.transform.position * speed);
+                    AudioSource.PlayClipAtPoint(spawn, this.transform.position * script2.speed);
                     objs[i] = Instantiate(prefab, pos, Quaternion.identity);
+                   
                     audioS.Play();
                 }
                 if (b == 1)
                 {
-                    AudioSource.PlayClipAtPoint(spawn, this.transform.position * speed);
+                    AudioSource.PlayClipAtPoint(spawn, this.transform.position * script2.speed);
                     objs[i] = Instantiate(prefab2, pos, Quaternion.identity);
+                   
                     audioS.Play();
                 }
                 if (b == 2)
                 {
-                    AudioSource.PlayClipAtPoint(spawn, this.transform.position * speed);
+                    AudioSource.PlayClipAtPoint(spawn, this.transform.position * script2.speed);
                     objs[i] = Instantiate(prefab3, pos, Quaternion.identity);
+                   
                     audioS.Play();
                 }
                 if (b == 3)
                 {
-                    AudioSource.PlayClipAtPoint(spawn, this.transform.position * speed);
+                    AudioSource.PlayClipAtPoint(spawn, this.transform.position * script2.speed);
                     objs[i] = Instantiate(prefab, pos, Quaternion.identity);
+                   
                     audioS.Play();
                 }
                 if (b == 4)
                 {
-                    AudioSource.PlayClipAtPoint(spawn, this.transform.position * speed);
+                    AudioSource.PlayClipAtPoint(spawn, this.transform.position * script2.speed);
                     objs[i] = Instantiate(prefab, pos, Quaternion.identity);
+                  
                     audioS.Play();
                 }
                 if (b == 5)
                 {
-                    AudioSource.PlayClipAtPoint(spawn, this.transform.position * speed);
+                    AudioSource.PlayClipAtPoint(spawn, this.transform.position * script2.speed);
                     objs[i] = Instantiate(prefab2, pos, Quaternion.identity);
+                  
                     audioS.Play();
                 }
 
@@ -164,7 +168,7 @@ namespace HoloToolkit.Unity.InputModule
                     if (script2.GetGame() == false)
                     {
                         yield return new WaitForSeconds(10);
-                       // StartCoroutine(round());
+                        StartCoroutine(script2.round());
                         //   zm.a += 1.5f;
                         i = 0;
                     }
@@ -177,27 +181,28 @@ namespace HoloToolkit.Unity.InputModule
 
             gameOverText.text = "Game Over!";
             gameOver = true;
+            StopCoroutine(script2.round());
         }
 
-        public void round()
-        {
-            roundNm++;
-            string roundString = "Round: " + roundNm.ToString();
-            string roundUIString = "Round: " + roundNm.ToString();
-            roundText.enabled = true;
+        //public void round()
+        //{
+        //    roundNm++;
+        //    string roundString = "Round: " + roundNm.ToString();
+        //    string roundUIString = "Round: " + roundNm.ToString();
+        //    roundText.enabled = true;
 
-            roundText.text = roundString;
-            RoundUI.text = roundUIString;
-            if (roundNm == 1)
-            {
-                speed = 1f;
-            }
-            speed += .5f;
-            //yield return new WaitForSeconds(5);
-            roundText.enabled = false;
+        //    roundText.text = roundString;
+        //    RoundUI.text = roundUIString;
+        //    if (roundNm == 1)
+        //    {
+        //        speed = 1f;
+        //    }
+        //    speed += .5f;
+        //    //yield return new WaitForSeconds(5);
+        //    //roundText.enabled = false;
 
 
-        }
+        //}
     }
 }
 

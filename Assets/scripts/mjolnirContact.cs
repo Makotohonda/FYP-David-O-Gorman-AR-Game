@@ -61,11 +61,12 @@ namespace HoloToolkit.Unity.InputModule
 
             if (collision.gameObject.tag == "Yes")
             {
-                manager.GetComponent<GameManager>().RestartGame();
+               gameOverSwitch.RestartGame();
                 Destroy(collision.gameObject);
                 Destroy(GameObject.FindWithTag("No"));
-             //   Debug.Log("HITHITHITHITHITHITHIT");
-                RoundNumber = 1;
+                Debug.Log("HITHITHITHITHITHITHIT");
+               // RoundNumber = 1;
+                gameOverSwitch.gameHalt = false;
             }
 
             if (collision.gameObject.tag == "No")
