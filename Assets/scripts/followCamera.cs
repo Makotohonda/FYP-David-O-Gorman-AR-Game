@@ -48,7 +48,7 @@ namespace HoloToolkit.Unity.InputModule
             {
                 if ((distanceFromCamera < 10) && goBack == false)
                 {
-                    distanceFromCamera += 0.2f;
+                    distanceFromCamera += 1f;
                 }
 
                 if (distanceFromCamera >= 10)
@@ -58,7 +58,7 @@ namespace HoloToolkit.Unity.InputModule
 
                 if ((distanceFromCamera > -1) && goBack == true)
                 {
-                    distanceFromCamera -= 0.2f;
+                    distanceFromCamera -= 1f;
                 }
 
                 if (goBack == true && distanceFromCamera <= -1)

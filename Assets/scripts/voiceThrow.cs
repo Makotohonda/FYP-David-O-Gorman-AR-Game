@@ -31,8 +31,8 @@ public class voiceThrow : MonoBehaviour {
         Vector3 resultingPosition = cameraTransform.position + cameraTransform.forward * distanceFromCamera;
         hammer.transform.position = new Vector3(resultingPosition.x, resultingPosition.y, resultingPosition.z);
 
-        // if (Input.GetKeyDown("space"))
-        if (trigger == true)
+        if (Input.GetKeyDown("space"))
+       // if (trigger == true)
         {
             launch = true;
             trigger = false;
@@ -42,7 +42,7 @@ public class voiceThrow : MonoBehaviour {
         {
             if ((distanceFromCamera < 10) && goBack == false)
             {
-                distanceFromCamera += 0.8f;
+                distanceFromCamera += 1;
             }
 
             if (distanceFromCamera >= 10)
@@ -52,7 +52,7 @@ public class voiceThrow : MonoBehaviour {
 
             if ((distanceFromCamera > -1) && goBack == true)
             {
-                distanceFromCamera -= 0.8f;
+                distanceFromCamera -= 1f;
             }
 
             if (goBack == true && distanceFromCamera <= -1)
