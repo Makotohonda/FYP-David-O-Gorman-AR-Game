@@ -25,8 +25,10 @@ namespace HoloToolkit.Unity.InputModule
         public GameManager script2;
        
        
-        AudioSource audioS;
+       // AudioSource audioS;
         public AudioClip spawn;
+        public AudioClip spawnB;
+        public AudioClip spawnC;
         //  Color zm;
 
 
@@ -41,8 +43,8 @@ namespace HoloToolkit.Unity.InputModule
             //  StartCoroutine(spawner());
             // Coroutine b = StartCoroutine(spawner());
             //  Color zm = roundText.color;
-            audioS = GetComponent<AudioSource>();
-            audioS.Play();
+           // audioS = GetComponent<AudioSource>();
+          //  audioS.Play();
             //  Coroutine c = StartCoroutine(spawner());
             StartCoroutine(spawnCheck());
          //   Debug.Log(script2.gameHalt);
@@ -64,7 +66,7 @@ namespace HoloToolkit.Unity.InputModule
             }
 
             //    Debug.Log(script2.a);
-            Debug.Log(script2.GetGame());
+         //   Debug.Log(script2.GetGame());
             if (script2.GetGame() == true)
             {
 
@@ -81,7 +83,7 @@ namespace HoloToolkit.Unity.InputModule
         {
             //Debug.Log(a);
             float ang = a;
-            radius = 10;
+            radius = 20;
             Vector3 pos;
             pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
             pos.z = center.z + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
@@ -124,43 +126,31 @@ namespace HoloToolkit.Unity.InputModule
                 {
                     AudioSource.PlayClipAtPoint(spawn, this.transform.position * script2.speed);
                     objs[i] = Instantiate(prefab, pos, Quaternion.identity);
-                   
-                    audioS.Play();
                 }
                 if (b == 1)
                 {
-                    AudioSource.PlayClipAtPoint(spawn, this.transform.position * script2.speed);
-                    objs[i] = Instantiate(prefab2, pos, Quaternion.identity);
-                   
-                    audioS.Play();
+                    AudioSource.PlayClipAtPoint(spawnC, this.transform.position * script2.speed);
+                    objs[i] = Instantiate(prefab, pos, Quaternion.identity);
                 }
                 if (b == 2)
                 {
-                    AudioSource.PlayClipAtPoint(spawn, this.transform.position * script2.speed);
-                    objs[i] = Instantiate(prefab3, pos, Quaternion.identity);
-                   
-                    audioS.Play();
+                    AudioSource.PlayClipAtPoint(spawnB, this.transform.position * script2.speed);
+                    objs[i] = Instantiate(prefab, pos, Quaternion.identity);
                 }
                 if (b == 3)
                 {
                     AudioSource.PlayClipAtPoint(spawn, this.transform.position * script2.speed);
                     objs[i] = Instantiate(prefab, pos, Quaternion.identity);
-                   
-                    audioS.Play();
                 }
                 if (b == 4)
                 {
-                    AudioSource.PlayClipAtPoint(spawn, this.transform.position * script2.speed);
+                    AudioSource.PlayClipAtPoint(spawnC, this.transform.position * script2.speed);
                     objs[i] = Instantiate(prefab, pos, Quaternion.identity);
-                  
-                    audioS.Play();
                 }
                 if (b == 5)
                 {
-                    AudioSource.PlayClipAtPoint(spawn, this.transform.position * script2.speed);
-                    objs[i] = Instantiate(prefab2, pos, Quaternion.identity);
-                  
-                    audioS.Play();
+                    AudioSource.PlayClipAtPoint(spawnB, this.transform.position * script2.speed);
+                    objs[i] = Instantiate(prefab, pos, Quaternion.identity);
                 }
 
                 if (i >= 11)

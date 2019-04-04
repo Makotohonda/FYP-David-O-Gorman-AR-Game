@@ -11,6 +11,8 @@ TagManager:
   - Yes
   - Culling
   - No
+  - ground
+  - window
   layers:
   - Default
   - TransparentFX
