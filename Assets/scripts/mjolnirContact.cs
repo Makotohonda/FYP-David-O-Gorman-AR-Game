@@ -87,7 +87,7 @@ namespace HoloToolkit.Unity.InputModule
             score = score + 1;
             Debug.Log("Score: " + count.ToString());
 
-            countText.text = "Score: " + count.ToString();
+           // countText.text = "Score: " + count.ToString();
 
             if (score >= 12)
             {

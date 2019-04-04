@@ -32,19 +32,21 @@ namespace HoloToolkit.Unity.InputModule
         Vector3 position2;
         public bool gameHalt = false;
         bool spawn = false;
-        public AudioClip yes;
-        public AudioClip no;
+       // public AudioClip yes;
+       // public AudioClip no;
         GameObject culling;
         bool isCreated = false;
 
         public float speed = 1f;
         public Text roundText;
         public Text RoundUI;
+        public Text yes;
+        public Text no;
         // Use this for initialization
         void Start()
         {
-            actions.Add("Yes", YesCall);
-            actions.Add("No", NoCall);
+            actions.Add("Retry", YesCall);
+            actions.Add("Exit", NoCall);
 
             keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
             keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
@@ -67,13 +69,13 @@ namespace HoloToolkit.Unity.InputModule
         void Update()
         {
            
-            if (spawn == true)
-            {
-                spawnButtons();
-                isCreated = false;
-                // gameHalt = false;
-              //  spawn = false;
-            }
+            //if (spawn == true)
+            //{
+            //    spawnButtons();
+            //    isCreated = false;
+            //    // gameHalt = false;
+            //  //  spawn = false;
+            //}
 
             if (m_joy.Count > 0)
             {
@@ -81,7 +83,15 @@ namespace HoloToolkit.Unity.InputModule
                 gyro = j.GetGyro();
                 Debug.Log(gyro);
             }
-        //    GetGame();
+            //    GetGame();
+
+            if (gameHalt == true)
+            {
+                gameOverText.text = "Game Over!";
+                restartText.text = "Try Again?";
+                yes.text = "yes";
+                no.text = "no";
+            }
         }
 
         public bool GetGame()
@@ -92,7 +102,7 @@ namespace HoloToolkit.Unity.InputModule
         public void IncreaseScore(int num)
         {
             score += num;
-            scoreText.text = "Score: " + score;
+           // scoreText.text = "Score: " + score;
         }
         public void DecreaseHealth(int num)
         {
@@ -118,6 +128,8 @@ namespace HoloToolkit.Unity.InputModule
             roundNm = 1;
             gameOverText.text = "";
             restartText.text = "";
+            yes.text = "";
+            no.text = "";
           //  culling.GetComponent<cull>().gameOver = true;
         }
 
@@ -148,19 +160,6 @@ namespace HoloToolkit.Unity.InputModule
         public void OnCollisionEnter(Collision collision)
         {
 
-
-            //if (GameObject.tag == "No")
-            //{
-
-        
-            //if (collision.gameObject.tag == "Yes")
-            //{
-            //    RestartGame();
-            //    Destroy(yesBox);
-            //    //Debug.Log("HITHITHITHITHITHITHIT");
-            //    gameHalt = false;
-                
-            //}
         }
 
         public void YesCall()
@@ -176,13 +175,7 @@ namespace HoloToolkit.Unity.InputModule
 
         public void NoCall()
         {
-            if(gameHalt == true)
-            {
-                RestartGame();
-                Destroy(noBox);
-                //Debug.Log("HITHITHITHITHITHITHIT");
-                gameHalt = false;
-            }
+            Application.Quit();
         }
 
 

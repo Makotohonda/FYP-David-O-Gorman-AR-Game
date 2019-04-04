@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
+using UnityEngine.UI;
 
 namespace HoloToolkit.Unity.InputModule
 {
@@ -25,8 +26,14 @@ namespace HoloToolkit.Unity.InputModule
         public GameObject hammer;
         GameObject temp;
         float timer = 0;
+        float cooldown = 0;
         public GameObject particle;
-        
+        public Image imageC;
+
+        private float r;
+        private float g;
+        private float b;
+        public float a;
         // Use this for initialization
         void Start()
         {
@@ -36,6 +43,13 @@ namespace HoloToolkit.Unity.InputModule
             keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
             keywordRecognizer.Start();
             audioS = GetComponent<AudioSource>();
+
+            r = imageC.color.r;
+            g = imageC.color.g;
+            b = imageC.color.b;
+            a = imageC.color.a;
+
+
         }
 
 
@@ -79,7 +93,6 @@ namespace HoloToolkit.Unity.InputModule
                     timer = 0;
                     trigger = false;
                 }
-                
                 // Instantiate( light, resultingPosition, transform.rotation * Quaternion.Euler(0, 0, 90));
                 //  Fire();
                // audioS.clip = lightA;
@@ -87,7 +100,13 @@ namespace HoloToolkit.Unity.InputModule
                
                 // lightA.Play();
             }
-           
+        
+            if (cooldown >= 0)
+            {
+                a += 0.05f;
+                cooldown--;
+                //AdjustColor();
+            }
         }
 
         private void RecognizedSpeech(PhraseRecognizedEventArgs speech)
@@ -99,11 +118,15 @@ namespace HoloToolkit.Unity.InputModule
 
         private void Fire()
         {
-
-            transform.Translate(0, 0, 0);
-            trigger = true;
-            strike = true;
-           
+          //  if (cooldown == 0)
+          //  {
+               // transform.Translate(0, 0, 0);
+                trigger = true;
+                strike = true;
+                cooldown = 5;
+                a = 0;
+               // imageC.color = new Color(r, g, b, a);
+            //}
             // Instantiate(light, resultingPosition, transform.rotation * Quaternion.Euler(0, 0, 90));
             //light.transform.rotation.y += 90;
         }
@@ -115,7 +138,14 @@ namespace HoloToolkit.Unity.InputModule
             Destroy(particle);
 
         }
-       
+
+        void AdjustColor()
+        {
+            Color c = new Color(r, g, b, a);
+            imageC.color = c;
+
+        }
+
     }
 
 }

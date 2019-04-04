@@ -23,7 +23,7 @@ public class Rotator : MonoBehaviour
 
     {
 
-        transform.Rotate(new Vector3(1, 0, 0) * Time.deltaTime * speed);
+        transform.Rotate(new Vector3(0, 0, 1) * Time.deltaTime * speed);
 
     }
 
