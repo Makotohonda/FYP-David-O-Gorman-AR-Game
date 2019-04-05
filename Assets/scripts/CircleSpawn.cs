@@ -23,7 +23,7 @@ namespace HoloToolkit.Unity.InputModule
         private bool restart;
         public Text restartText;
         public GameManager script2;
-       
+      
        
        // AudioSource audioS;
         public AudioClip spawn;
@@ -58,7 +58,7 @@ namespace HoloToolkit.Unity.InputModule
             float step = script2.speed * Time.deltaTime;
             for (int i = 0; i < numObjects; i++)
             {
-                if (objs[i] != null)
+                if (objs[i] != null && objs[i].GetComponent<moveToPlaye>().movement == true)
                 {
                     objs[i].transform.position = Vector3.MoveTowards(objs[i].transform.position, OtherObject.transform.position, step);
                     objs[i].transform.LookAt(OtherObject.transform.position);

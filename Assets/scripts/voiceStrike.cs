@@ -34,6 +34,8 @@ namespace HoloToolkit.Unity.InputModule
         private float g;
         private float b;
         public float a;
+        private float speed = 26;
+        Color tempColor;
         // Use this for initialization
         void Start()
         {
@@ -49,23 +51,28 @@ namespace HoloToolkit.Unity.InputModule
             b = imageC.color.b;
             a = imageC.color.a;
 
+            //imageC = GetComponent<Image>();
+            //tempColor = imageC.color;
 
+            //imageC.color = tempColor;
         }
 
 
         // Update is called once per frame
         void Update()
         {
-
+            AdjustColor();
             Vector3 resultingPosition = cameraTransform.position + cameraTransform.forward * distanceFromCamera;
             light.transform.position = new Vector3(resultingPosition.x, resultingPosition.y, resultingPosition.z);
+           // imageC.color = new Color(r, g, b, a);
+            Debug.Log("coooldown:" + cooldown);
 
-
-
-            if (Input.GetKeyDown("space"))
-            {
-                trigger = true;
-            }
+            //if (Input.GetKeyDown("space"))
+            //{
+            //    Debug.Log("space");
+            //    trigger = true;
+            //    Fire();
+            //}
             if(trigger == true)
             {
                 RaycastHit[] hits;
@@ -101,12 +108,18 @@ namespace HoloToolkit.Unity.InputModule
                 // lightA.Play();
             }
         
-            if (cooldown >= 0)
+            if (cooldown > 0)
             {
-                a += 0.05f;
-                cooldown--;
+                a += 0.0005f;
+                cooldown -= Time.deltaTime;
                 //AdjustColor();
             }
+            if (cooldown <= 0)
+            {
+                speed = 26;
+                imageC.transform.Rotate(new Vector3(0, 0, 1) * Time.deltaTime * speed);
+            }
+                
         }
 
         private void RecognizedSpeech(PhraseRecognizedEventArgs speech)
@@ -118,15 +131,20 @@ namespace HoloToolkit.Unity.InputModule
 
         private void Fire()
         {
-          //  if (cooldown == 0)
-          //  {
+            if (cooldown <= 0)
+            {
                // transform.Translate(0, 0, 0);
                 trigger = true;
                 strike = true;
-                cooldown = 5;
-                a = 0;
-               // imageC.color = new Color(r, g, b, a);
-            //}
+                cooldown = 10;
+                speed = 0f;
+                a = 0f;
+              //  imageC.color = new Color(imageC.color.r, imageC.color.g, imageC.color.b, 0);
+               // imageC.color = tempColor;
+                //tempColor.Image.ChangeAlpha(0f);
+                Debug.Log(a);
+          
+           }
             // Instantiate(light, resultingPosition, transform.rotation * Quaternion.Euler(0, 0, 90));
             //light.transform.rotation.y += 90;
         }
@@ -143,7 +161,7 @@ namespace HoloToolkit.Unity.InputModule
         {
             Color c = new Color(r, g, b, a);
             imageC.color = c;
-
+            
         }
 
     }

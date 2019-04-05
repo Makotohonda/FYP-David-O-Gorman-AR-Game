@@ -17,7 +17,10 @@ public class Rotator : MonoBehaviour
 
     public float speed;
 
-
+    public float GetRotation()
+    {
+        return speed;
+    }
 
     void Update()
 

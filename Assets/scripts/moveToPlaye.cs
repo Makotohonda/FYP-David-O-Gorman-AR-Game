@@ -5,6 +5,8 @@ using UnityEngine;
 public class moveToPlaye : MonoBehaviour {
 
     public GameObject gameObject;
+    public Animator anim;
+    public bool movement = true;
 	// Use this for initialization
 	void Start () {
 		
@@ -12,6 +14,10 @@ public class moveToPlaye : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = Vector3.MoveTowards(transform.position, gameObject.transform.position, 0.3f);
+        if (movement == true)
+        {
+            anim.SetFloat("DistanceToPlayer", Vector3.Distance(transform.position, gameObject.transform.position));
+            transform.position = Vector3.MoveTowards(transform.position, gameObject.transform.position, 0.3f);
+        }
     }
 }

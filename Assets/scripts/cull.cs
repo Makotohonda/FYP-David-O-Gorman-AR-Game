@@ -77,7 +77,7 @@ public class cull : MonoBehaviour {
         if (collision.gameObject.tag == "Cube")
         {
             Instantiate(particle, transform.position, transform.rotation);
-            Destroy(collision.gameObject);
+           // Destroy(collision.gameObject);
             audioS.Play();
             Destroy(particle);
 

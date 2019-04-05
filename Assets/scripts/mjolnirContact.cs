@@ -10,7 +10,7 @@ namespace HoloToolkit.Unity.InputModule
     {
 
 
-
+        bool dead = false;
         public GameObject particle;
         GameObject manager;
         public GameManager gameOverSwitch;
@@ -21,6 +21,7 @@ namespace HoloToolkit.Unity.InputModule
         public Text countText;
         int RoundNumber = 1;
         int score = 0;
+        public GameManager script2;
 
         // Use this for initialization
         void Start()
@@ -39,8 +40,6 @@ namespace HoloToolkit.Unity.InputModule
 
 
 
-
-
         }
 
 
@@ -55,7 +54,16 @@ namespace HoloToolkit.Unity.InputModule
 
                 audioS.Play();
                 manager.GetComponent<GameManager>().IncreaseScore(1);
-                Destroy(collision.gameObject);
+                collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                Animator anime = collision.gameObject.GetComponent<Animator>();
+                collision.gameObject.GetComponent<moveToPlaye>().movement = false;
+                anime.SetBool("Dead", true);
+                dead = true;
+                //collision.gameObject.speed = 0;
+                collision.gameObject.GetComponent<DestroyOgre>().ActivateTimer();
+               
+               // collision.gameObject.Play("Dead");
+                //Destroy(collision.gameObject);
             }
 
 
