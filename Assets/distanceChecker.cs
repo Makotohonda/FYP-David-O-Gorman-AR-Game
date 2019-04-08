@@ -16,7 +16,7 @@ public class distanceChecker : MonoBehaviour {
 	void Update () {
 
         float dist = Vector3.Distance(player.transform.position, transform.position);
-        Debug.Log("Distance" + dist);
+       // Debug.Log("Distance" + dist);
         animator.SetFloat("DistanceFromPlayer",dist);
 	}
 }

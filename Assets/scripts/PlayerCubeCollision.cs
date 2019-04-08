@@ -26,7 +26,7 @@ namespace HoloToolkit.Unity.InputModule
         {
             if (collision.gameObject.tag == "Cube")
             {
-                manager.GetComponent<GameManager>().DecreaseHealth(2);
+                manager.GetComponent<GameManager>().DecreaseHealth(5);
              //   damage.Play();
             }
 

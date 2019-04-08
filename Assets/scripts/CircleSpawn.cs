@@ -14,6 +14,7 @@ namespace HoloToolkit.Unity.InputModule
         public GameObject prefab2;
         public GameObject prefab3;
         public GameObject OtherObject;
+        public GameObject bigBoss;
         // public float speed = 1.0f;
         int number = 0;
         GameObject[] objs = new GameObject[12];
@@ -23,15 +24,17 @@ namespace HoloToolkit.Unity.InputModule
         private bool restart;
         public Text restartText;
         public GameManager script2;
-      
+        bool spawnBoss = false;
        
        // AudioSource audioS;
         public AudioClip spawn;
         public AudioClip spawnB;
         public AudioClip spawnC;
+        public AudioClip bigBossSpawn;
         //  Color zm;
 
 
+        int deadCounter=0;
 
         public
 
@@ -43,11 +46,12 @@ namespace HoloToolkit.Unity.InputModule
             //  StartCoroutine(spawner());
             // Coroutine b = StartCoroutine(spawner());
             //  Color zm = roundText.color;
-           // audioS = GetComponent<AudioSource>();
-          //  audioS.Play();
+            // audioS = GetComponent<AudioSource>();
+            //  audioS.Play();
             //  Coroutine c = StartCoroutine(spawner());
-            StartCoroutine(spawnCheck());
-         //   Debug.Log(script2.gameHalt);
+            //   StartCoroutine(spawnCheck());
+            //   Debug.Log(script2.gameHalt);
+            StartCoroutine(spawner());
         }
 
 
@@ -64,9 +68,13 @@ namespace HoloToolkit.Unity.InputModule
                     objs[i].transform.LookAt(OtherObject.transform.position);
                 }
             }
-
+           // if (bigBoss != null)
+          //  {
+              //  bigBoss.transform.position = Vector3.MoveTowards(bigBoss.transform.position, OtherObject.transform.position, step / 2);
+              //  bigBoss.transform.LookAt(OtherObject.transform.position);
+         //   }
             //    Debug.Log(script2.a);
-         //   Debug.Log(script2.GetGame());
+            //   Debug.Log(script2.GetGame());
             if (script2.GetGame() == true)
             {
 
@@ -77,7 +85,25 @@ namespace HoloToolkit.Unity.InputModule
                 //break;
             }
 
+    //        Debug.Log("Dead Count: " + script2.getDeadCount());
+            if (script2.getDeadCount() >= 11)
+            {
+                if (script2.GetGame() == false)
+                {
+                    //yield return new WaitForSeconds(5);
+                    StartCoroutine(spawner());
+                    StartCoroutine(script2.round());
+                    //   zm.a += 1.5f;
+                    // i = 0;
+                }
+                Vector3 center = transform.position;
+                int a = Random.Range(-0, 359);
+                Vector3 pos = RandomCircle(center, 1.0f, a);
+                AudioSource.PlayClipAtPoint(bigBossSpawn, this.transform.position * script2.speed);
+                Instantiate(bigBoss, pos, Quaternion.identity);
+                script2.ResetDeadCount();
 
+            }
         }
         Vector3 RandomCircle(Vector3 center, float radius, int a)
         {
@@ -100,7 +126,7 @@ namespace HoloToolkit.Unity.InputModule
                 //  Debug.Log("GAME OVER GAME OVER GAME OVER");
                 yield return new WaitForSeconds(1);
                 script2.roundNm = 1;
-                StopCoroutine(b);
+               // StopCoroutine(b);
                 //break;
             }
 
@@ -112,6 +138,7 @@ namespace HoloToolkit.Unity.InputModule
            
             for (int i = 0; i < numObjects; i++)
             {
+
 
                 //int a = 360 / numObjects * i;
                 //Vector3 position = new Vector3(Random.Range(-10.0f, 10.0f), 0, Random.Range(-10.0f, 10.0f));
@@ -153,17 +180,14 @@ namespace HoloToolkit.Unity.InputModule
                     objs[i] = Instantiate(prefab, pos, Quaternion.identity);
                 }
 
-                if (i >= 11)
-                {
-                    if (script2.GetGame() == false)
-                    {
-                        yield return new WaitForSeconds(10);
-                        StartCoroutine(script2.round());
-                        //   zm.a += 1.5f;
-                        i = 0;
-                    }
-                }
+
+
+
             }
+
+
+          
+
         }
 
         public void GameOver()

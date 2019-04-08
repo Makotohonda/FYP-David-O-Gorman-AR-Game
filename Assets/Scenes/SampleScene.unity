@@ -896,6 +896,7 @@ MonoBehaviour:
   particle: {fileID: 1040694267839892, guid: e3aa5a9c76702f14db35b0346438fe25, type: 2}
   gameOverSwitch: {fileID: 1120735062}
   boom: {fileID: 8300000, guid: faea6089269127c42850582ab6260253, type: 3}
+  bbHealth: 30
   countText: {fileID: 721421749}
   script2: {fileID: 1120735062}
 --- !u!82 &666490309
@@ -1931,6 +1932,7 @@ MonoBehaviour:
   RoundUI: {fileID: 1379406970}
   yes: {fileID: 679892656}
   no: {fileID: 1120906103}
+  deadCounter: 0
 --- !u!4 &1120735063
 Transform:
   m_ObjectHideFlags: 0
@@ -2237,12 +2239,14 @@ MonoBehaviour:
   prefab2: {fileID: 1948539700667238, guid: b6016b99d4fed134bbd54b0ff0222b21, type: 2}
   prefab3: {fileID: 1948539700667238, guid: b6016b99d4fed134bbd54b0ff0222b21, type: 2}
   OtherObject: {fileID: 1786503782}
+  bigBoss: {fileID: 1177523545693426, guid: b2d211c036a6bf644bb91103109894c0, type: 2}
   gameOverText: {fileID: 1398392407}
   restartText: {fileID: 780958049}
   script2: {fileID: 1120735062}
   spawn: {fileID: 8300000, guid: 50da6ccd7a53ec341a839e20e657c9d4, type: 3}
   spawnB: {fileID: 8300000, guid: b79dd86d0799d0a44b365186f37de854, type: 3}
   spawnC: {fileID: 8300000, guid: c2507d9784470ff4cae9040e5f7b60e3, type: 3}
+  bigBossSpawn: {fileID: 8300000, guid: ee82aef3dcf4cca46a45489c53a8a3f0, type: 3}
 --- !u!114 &1162702827
 MonoBehaviour:
   m_ObjectHideFlags: 0

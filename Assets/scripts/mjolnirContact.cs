@@ -16,13 +16,14 @@ namespace HoloToolkit.Unity.InputModule
         public GameManager gameOverSwitch;
         AudioSource audioS;
         public AudioClip boom;
-
+        public AudioClip bbPain;
+        public float bbHealth = 30;
         private int count;
         public Text countText;
         int RoundNumber = 1;
         int score = 0;
         public GameManager script2;
-
+        bool bbdeath = false;
         // Use this for initialization
         void Start()
         {
@@ -57,6 +58,8 @@ namespace HoloToolkit.Unity.InputModule
                 collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 Animator anime = collision.gameObject.GetComponent<Animator>();
                 collision.gameObject.GetComponent<moveToPlaye>().movement = false;
+                audioS.clip = bbPain;
+                audioS.Play();
                 anime.SetBool("Dead", true);
                 dead = true;
                 //collision.gameObject.speed = 0;
@@ -66,7 +69,26 @@ namespace HoloToolkit.Unity.InputModule
                 //Destroy(collision.gameObject);
             }
 
+            if (collision.gameObject.tag == "bigBoss")
+            {
+                bbHealth -= 10;
+                  
 
+                if (bbHealth <= 0)
+                {
+                    Debug.Log("Equal 0");
+                    collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    collision.gameObject.GetComponent<BossControl>().movement = false;
+                    //collision.gameObject.speed = 0;
+                    Animator anime = collision.gameObject.GetComponent<Animator>();
+                    anime.SetBool("death", true);
+                    bbdeath = true;
+                    collision.gameObject.GetComponent<DestroyBigB>().ActivateTimer();
+                    // Destroy(collision.gameObject);
+                    //bbHealth = 30;
+                }
+
+            }
             if (collision.gameObject.tag == "Yes")
             {
                gameOverSwitch.RestartGame();

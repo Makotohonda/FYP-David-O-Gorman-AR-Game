@@ -65,7 +65,7 @@ namespace HoloToolkit.Unity.InputModule
             Vector3 resultingPosition = cameraTransform.position + cameraTransform.forward * distanceFromCamera;
             light.transform.position = new Vector3(resultingPosition.x, resultingPosition.y, resultingPosition.z);
            // imageC.color = new Color(r, g, b, a);
-            Debug.Log("coooldown:" + cooldown);
+          //  Debug.Log("coooldown:" + cooldown);
 
             //if (Input.GetKeyDown("space"))
             //{

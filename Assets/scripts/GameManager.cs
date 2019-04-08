@@ -42,6 +42,7 @@ namespace HoloToolkit.Unity.InputModule
         public Text RoundUI;
         public Text yes;
         public Text no;
+        public int deadCounter;
         // Use this for initialization
         void Start()
         {
@@ -63,6 +64,19 @@ namespace HoloToolkit.Unity.InputModule
         {
             Debug.Log(speech.text);
             actions[speech.text].Invoke();
+        }
+
+        public void IncreaseDeadCount()
+        {
+            deadCounter++;
+        }
+        public int getDeadCount()
+        {
+            return deadCounter;
+        }
+        public void ResetDeadCount()
+        {
+            deadCounter = 0;
         }
 
         // Update is called once per frame
@@ -89,8 +103,8 @@ namespace HoloToolkit.Unity.InputModule
             {
                 gameOverText.text = "Game Over!";
                 restartText.text = "Try Again?";
-                yes.text = "yes";
-                no.text = "no";
+                yes.text = "'retry'";
+                no.text = "'exit'";
             }
         }
 
@@ -99,6 +113,7 @@ namespace HoloToolkit.Unity.InputModule
             return gameHalt;
 
         }
+
         public void IncreaseScore(int num)
         {
             score += num;
