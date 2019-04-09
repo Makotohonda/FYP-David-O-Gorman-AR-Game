@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 namespace HoloToolkit.Unity.InputModule
 {
 
     public class followCamera : MonoBehaviour, IInputClickHandler
     {
-
-        
-        // Use this for initialization
-
+      // Use this for initialization
         public Transform cameraTransform;
         public float distanceFromCamera;
         bool launch = false;
@@ -42,35 +37,38 @@ namespace HoloToolkit.Unity.InputModule
         // Update is called once per frame
         void Update()
         {
-
+            // Takes the direction that the player is facing and sets the hammers position to the resulting position
+            //launches the hammer in the direction that th player is facing N
             Vector3 resultingPosition = cameraTransform.position + cameraTransform.forward * distanceFromCamera;
             hammer.transform.position = new Vector3(resultingPosition.x, resultingPosition.y, resultingPosition.z);
             resultPos = resultingPosition;
-           // if (Input.GetKeyDown("space"))
+
            if(trigger == true)
             {
                 launch = true;
                 trigger = false;
             }
-          //  Debug.Log(trigger);
+
             if (launch)
             {
+                //sends the hammer forward until reaching the limit
                 if ((distanceFromCamera < 10) && goBack == false)
                 {
                     distanceFromCamera += 1f;
                 }
-
+                 //checks for limit reached
                 if (distanceFromCamera >= 10)
                 {
                     goBack = true;
-                    //Instantiate(light, resultingPosition, transform.rotation * Quaternion.Euler(0, 0, 90));
                 }
 
+                //sends the hammer back to the initial position
                 if ((distanceFromCamera > -1) && goBack == true)
                 {
                     distanceFromCamera -= 1f;
                 }
 
+                //resets all commands
                 if (goBack == true && distanceFromCamera <= -1)
                 {
                     goBack = false;
@@ -80,6 +78,7 @@ namespace HoloToolkit.Unity.InputModule
             }
         }
 
+        //checks for input from the player
         public void OnInputClicked(InputClickedEventData eventData)
         {
             audioS.Play();

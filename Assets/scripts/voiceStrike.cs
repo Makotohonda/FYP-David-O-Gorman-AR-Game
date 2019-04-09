@@ -40,7 +40,7 @@ namespace HoloToolkit.Unity.InputModule
         void Start()
         {
 
-            actions.Add("Fire", Fire);
+            actions.Add("Bolt", Fire);
             keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
             keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
             keywordRecognizer.Start();

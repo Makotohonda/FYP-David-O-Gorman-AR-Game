@@ -15,25 +15,19 @@ namespace HoloToolkit.Unity.InputModule
         public GameObject prefab3;
         public GameObject OtherObject;
         public GameObject bigBoss;
-        // public float speed = 1.0f;
         int number = 0;
         GameObject[] objs = new GameObject[12];
-        //  Random rnd = new Random();
         private bool gameOver;
         public Text gameOverText;
         private bool restart;
         public Text restartText;
         public GameManager script2;
         bool spawnBoss = false;
-       
-       // AudioSource audioS;
         public AudioClip spawn;
         public AudioClip spawnB;
         public AudioClip spawnC;
+      
         public AudioClip bigBossSpawn;
-        //  Color zm;
-
-
         int deadCounter=0;
 
         public
@@ -43,23 +37,17 @@ namespace HoloToolkit.Unity.InputModule
             gameOver = false;
             restart = false;
             gameOverText.text = "";
-            //  StartCoroutine(spawner());
-            // Coroutine b = StartCoroutine(spawner());
-            //  Color zm = roundText.color;
-            // audioS = GetComponent<AudioSource>();
-            //  audioS.Play();
-            //  Coroutine c = StartCoroutine(spawner());
-            //   StartCoroutine(spawnCheck());
-            //   Debug.Log(script2.gameHalt);
             StartCoroutine(spawner());
+           
         }
 
 
         void Update()
         {
-
-
+            //sets the speed to be off of time and in seconds
             float step = script2.speed * Time.deltaTime;
+
+            //makes sure that the enemies are facing and moving towards whatever position the player is in
             for (int i = 0; i < numObjects; i++)
             {
                 if (objs[i] != null && objs[i].GetComponent<moveToPlaye>().movement == true)
@@ -68,33 +56,36 @@ namespace HoloToolkit.Unity.InputModule
                     objs[i].transform.LookAt(OtherObject.transform.position);
                 }
             }
-           // if (bigBoss != null)
-          //  {
-              //  bigBoss.transform.position = Vector3.MoveTowards(bigBoss.transform.position, OtherObject.transform.position, step / 2);
-              //  bigBoss.transform.LookAt(OtherObject.transform.position);
-         //   }
-            //    Debug.Log(script2.a);
-            //   Debug.Log(script2.GetGame());
+       
+            //if Game is set to true then set round number t zero
             if (script2.GetGame() == true)
-            {
-
-                //gameOver = true;
-                  Debug.Log("GAME OVER GAME OVER GAME OVER");
-                  script2.roundNm = 1;
-                //StopCoroutine(c);
-                //break;
+            { 
+                  script2.roundNm = 1;  
             }
 
-    //        Debug.Log("Dead Count: " + script2.getDeadCount());
+            //If restart game is set to true then destroy all the enemies currently on the screen
+            //Sets restart to false and then calls the spawner co routine to begin
+            if (script2.restart() == true)
+            {
+                
+                for (int i = 0; i < objs.Length; i++)
+                {
+                    Destroy(objs[i].gameObject);
+                }
+                Destroy(GameObject.FindWithTag("bigBoss"));
+
+
+                 script2.restartG = false;
+                StartCoroutine(spawner());
+            }
+
+
             if (script2.getDeadCount() >= 11)
             {
                 if (script2.GetGame() == false)
                 {
-                    //yield return new WaitForSeconds(5);
                     StartCoroutine(spawner());
                     StartCoroutine(script2.round());
-                    //   zm.a += 1.5f;
-                    // i = 0;
                 }
                 Vector3 center = transform.position;
                 int a = Random.Range(-0, 359);
@@ -105,9 +96,9 @@ namespace HoloToolkit.Unity.InputModule
 
             }
         }
+        //Creates random spawn points around the radius of a set sized circle
         Vector3 RandomCircle(Vector3 center, float radius, int a)
         {
-            //Debug.Log(a);
             float ang = a;
             radius = 20;
             Vector3 pos;
@@ -116,37 +107,31 @@ namespace HoloToolkit.Unity.InputModule
             pos.y = center.y;
             return pos;
         }
+
         IEnumerator spawnCheck()
         {
             Coroutine b = StartCoroutine(spawner());
             if (script2.GetGame() == true)
             {
                 Debug.Log("Inside of the spawn check");
-                //gameOver = true;
-                //  Debug.Log("GAME OVER GAME OVER GAME OVER");
                 yield return new WaitForSeconds(1);
                 script2.roundNm = 1;
-               // StopCoroutine(b);
-                //break;
             }
 
         }
+
+        /*spawner function which runs through and array and instantiates an enemy prefab to a random positon
+         around the radius of a circle surronding the player, each prefab is given a different audio spawn sound
+         before each spawn there is a wait of three seconds so that there is not an over wheleming amount of enemies */
         IEnumerator spawner()
         {
-            //Coroutine c = StartCoroutine(spawner());
             Vector3 center = transform.position;
            
             for (int i = 0; i < numObjects; i++)
             {
-
-
-                //int a = 360 / numObjects * i;
-                //Vector3 position = new Vector3(Random.Range(-10.0f, 10.0f), 0, Random.Range(-10.0f, 10.0f));
                 int a = Random.Range(-0, 359);
                 Vector3 pos = RandomCircle(center, 1.0f, a);
                 yield return new WaitForSeconds(3);
-                //  Debug.Log("Test");
-                
                 int b = Random.Range(-0, 6);
 
                 if (b == 0)
@@ -179,44 +164,15 @@ namespace HoloToolkit.Unity.InputModule
                     AudioSource.PlayClipAtPoint(spawnB, this.transform.position * script2.speed);
                     objs[i] = Instantiate(prefab, pos, Quaternion.identity);
                 }
-
-
-
-
             }
-
-
-          
-
         }
 
         public void GameOver()
         {
-
             gameOverText.text = "Game Over!";
             gameOver = true;
             StopCoroutine(script2.round());
         }
-
-        //public void round()
-        //{
-        //    roundNm++;
-        //    string roundString = "Round: " + roundNm.ToString();
-        //    string roundUIString = "Round: " + roundNm.ToString();
-        //    roundText.enabled = true;
-
-        //    roundText.text = roundString;
-        //    RoundUI.text = roundUIString;
-        //    if (roundNm == 1)
-        //    {
-        //        speed = 1f;
-        //    }
-        //    speed += .5f;
-        //    //yield return new WaitForSeconds(5);
-        //    //roundText.enabled = false;
-
-
-        //}
     }
 }
 

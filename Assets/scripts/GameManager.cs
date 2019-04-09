@@ -13,7 +13,9 @@ namespace HoloToolkit.Unity.InputModule
 
     public class GameManager : MonoBehaviour
     {
+        // Creates Keyword recognizer 
         private KeywordRecognizer keywordRecognizer;
+        // creates a dictionary and adds an empty string to it
         private Dictionary<string, Action> actions = new Dictionary<string, Action>();
 
         public int roundNm = 1;
@@ -24,16 +26,12 @@ namespace HoloToolkit.Unity.InputModule
         private List<Joycon> m_joy;
         public int jc_ind = 0;
         GameObject box;
-        public GameObject yesBox;
-        public GameObject noBox;
         public Text restartText;
         public Vector3 gyro;
         Vector3 position1;
         Vector3 position2;
         public bool gameHalt = false;
         bool spawn = false;
-       // public AudioClip yes;
-       // public AudioClip no;
         GameObject culling;
         bool isCreated = false;
 
@@ -42,21 +40,22 @@ namespace HoloToolkit.Unity.InputModule
         public Text RoundUI;
         public Text yes;
         public Text no;
+        public bool restartG = false;
         public int deadCounter;
         // Use this for initialization
         void Start()
         {
+            //strings retry and exit to dictionary, connected and calling corresponding functions
             actions.Add("Retry", YesCall);
             actions.Add("Exit", NoCall);
 
+            //adds the strings to the dictionary
             keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
             keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
             keywordRecognizer.Start();
 
             box = GameObject.FindWithTag("PlayerBox");
             m_joy = JoyconManager.Instance.j;
-            position1 = new Vector3(1, -1, 4);
-            position2 = new Vector3(2, -1, 4);
             culling = GameObject.FindWithTag("Culling");
         }
 
@@ -66,30 +65,30 @@ namespace HoloToolkit.Unity.InputModule
             actions[speech.text].Invoke();
         }
 
+        //Keeps track of enemies killed
         public void IncreaseDeadCount()
         {
             deadCounter++;
         }
+        //Returns dead count
         public int getDeadCount()
         {
             return deadCounter;
         }
+        //Rests Dead count on new games
         public void ResetDeadCount()
         {
             deadCounter = 0;
         }
 
-        // Update is called once per frame
         void Update()
         {
-           
-            //if (spawn == true)
-            //{
-            //    spawnButtons();
-            //    isCreated = false;
-            //    // gameHalt = false;
-            //  //  spawn = false;
-            //}
+
+            //Editor command for debugging purposes
+            if (Input.GetKeyDown("y"))
+            {
+                YesCall();
+            }
 
             if (m_joy.Count > 0)
             {
@@ -97,8 +96,8 @@ namespace HoloToolkit.Unity.InputModule
                 gyro = j.GetGyro();
                 Debug.Log(gyro);
             }
-            //    GetGame();
 
+            //sets text to strings when the game is triggered to be over
             if (gameHalt == true)
             {
                 gameOverText.text = "Game Over!";
@@ -111,14 +110,13 @@ namespace HoloToolkit.Unity.InputModule
         public bool GetGame()
         {
             return gameHalt;
-
         }
 
         public void IncreaseScore(int num)
         {
             score += num;
-           // scoreText.text = "Score: " + score;
         }
+        //This funtion decrease rthe players health and will end game if reaches zero 
         public void DecreaseHealth(int num)
         {
             playerHealth -= num;
@@ -128,14 +126,21 @@ namespace HoloToolkit.Unity.InputModule
                 spawn = true;
                 gameHalt = true;
             }
-           // Debug.Log("Health: " + playerHealth);
-             //   spawn = true;
         }
 
+        //Returns the players health
         public int GetHealth()
         {
             return playerHealth;
         }
+        //returns the restart game so CircleSpawn can reset in corelations
+        public bool restart()
+        {
+            return restartG;
+        }
+
+        //resets players health, score and round. 
+        //clears screen of all text
         public void RestartGame()
         {
             playerHealth = 100;
@@ -145,68 +150,49 @@ namespace HoloToolkit.Unity.InputModule
             restartText.text = "";
             yes.text = "";
             no.text = "";
-          //  culling.GetComponent<cull>().gameOver = true;
+            restartG = true;
         }
 
-        public void spawnButtons()
-        {
-            if (spawn == true)
-            {
-                if (!isCreated)
-                {
-                    gameOverText.text = "Game Over!";
-                    restartText.text = "Try Again?";
-                    // Instantiate(yesBox, yesBox.transform.position, yesBox.transform.rotation);
-                    GameObject yesBox1 = Instantiate(yesBox, yesBox.transform.position, yesBox.transform.rotation);
-                    yesBox.transform.position = new Vector3(position1.x, position1.y + transform.localScale.y / 2, position1.z);
-
-                    GameObject noBox1 = Instantiate(noBox, noBox.transform.position, noBox.transform.rotation);
-                    noBox.transform.position = new Vector3(position2.x, position2.y + transform.localScale.y / 2, position2.z);
-                    //  Instantiate(noBox, 0,0,0);
-                    //   gameHalt = false;
-                    spawn = false;
-                    roundNm = 1;
-                    isCreated = true;
-                }
-            }
-
-        }
-
+       
         public void OnCollisionEnter(Collision collision)
         {
 
         }
 
+        /*if player says 'Retry'this function is called  which will call to restart the game
+          this will only trigger is the game is over, enemies speed is reset to zero and gameover set to false
+             */
         public void YesCall()
         {
             if (gameHalt == true)
             {
                 RestartGame();
                 Destroy(yesBox);
-                //Debug.Log("HITHITHITHITHITHITHIT");
                 gameHalt = false;
+                speed = 1f;
             }
         }
-
+        /*if player says 'Exit' this function is called which will exit the application and stop it
+          unlike the YesCall this is accesible at any time during the game so the player can quit whenever
+          they want. Note: Application.Quit is not a function that can be used in Editor*/ 
         public void NoCall()
         {
             Application.Quit();
         }
 
-
+        //Funtion to keep track of rounf count and output to screen on the start of each round
         public IEnumerator round()
         {
             roundNm++;
             string roundString = "Round: " + roundNm.ToString();
-            string roundUIString = "Round: " + roundNm.ToString();
             roundText.enabled = true;
-
             roundText.text = roundString;
-            RoundUI.text = roundUIString;
+
             if (roundNm == 1)
             {
                 speed = 1f;
             }
+
             speed += .5f;
             yield return new WaitForSeconds(5);
             roundText.enabled = false;

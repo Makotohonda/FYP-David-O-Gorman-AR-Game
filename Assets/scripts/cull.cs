@@ -78,7 +78,7 @@ public class cull : MonoBehaviour {
         {
             Instantiate(particle, transform.position, transform.rotation);
            // Destroy(collision.gameObject);
-            audioS.Play();
+           // audioS.Play();
             Destroy(particle);
 
         }

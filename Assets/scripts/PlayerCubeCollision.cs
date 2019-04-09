@@ -22,12 +22,13 @@ namespace HoloToolkit.Unity.InputModule
         {
 
         }
+
+        //checks collision of regular enemies and player and decreases the players health by 10
         public void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.tag == "Cube")
             {
-                manager.GetComponent<GameManager>().DecreaseHealth(5);
-             //   damage.Play();
+                manager.GetComponent<GameManager>().DecreaseHealth(10);
             }
 
         }

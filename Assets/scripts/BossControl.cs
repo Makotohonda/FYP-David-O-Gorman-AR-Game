@@ -25,7 +25,7 @@ namespace HoloToolkit.Unity.InputModule
             if (movement == true)
             {
                 float step = speed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step / 2);
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
                 transform.LookAt(player.transform.position);
             }
         }

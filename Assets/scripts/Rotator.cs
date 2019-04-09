@@ -3,13 +3,6 @@
 using System.Collections;
 
 
-
-/// <summary>
-
-/// </summary>
-
-
-
 public class Rotator : MonoBehaviour
 {
 

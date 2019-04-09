@@ -24,6 +24,8 @@ namespace HoloToolkit.Unity.InputModule
         // Update is called once per frame
         void Update()
         {
+
+            //sets the deletion of the ogre onto a timer so the death animation can play out
             if (startTime)
             {
                 //timer
