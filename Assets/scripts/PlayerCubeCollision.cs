@@ -9,6 +9,7 @@ namespace HoloToolkit.Unity.InputModule
     public class PlayerCubeCollision : MonoBehaviour
     {
         GameObject manager;
+        AudioSource audioS;
         // Use this for initialization
         public AudioClip damage;
 
@@ -29,6 +30,8 @@ namespace HoloToolkit.Unity.InputModule
             if (collision.gameObject.tag == "Cube")
             {
                 manager.GetComponent<GameManager>().DecreaseHealth(10);
+                // PlayClip(damge);
+                audioS.Play();
             }
 
         }

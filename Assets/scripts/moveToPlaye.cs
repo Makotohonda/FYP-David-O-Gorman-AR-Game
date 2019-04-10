@@ -16,7 +16,7 @@ public class moveToPlaye : MonoBehaviour {
 	void Update () {
         if (movement == true)
         {
-            anim.SetFloat("DistanceToPlayer", Vector3.Distance(transform.position, gameObject.transform.position));
+          //  anim.SetFloat("DistanceToPlayer", Vector3.Distance(transform.position, gameObject.transform.position));
             transform.position = Vector3.MoveTowards(transform.position, gameObject.transform.position, 0.3f);
         }
     }

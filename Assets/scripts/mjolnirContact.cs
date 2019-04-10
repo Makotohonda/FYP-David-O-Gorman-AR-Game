@@ -58,7 +58,7 @@ namespace HoloToolkit.Unity.InputModule
                 Animator anime = collision.gameObject.GetComponent<Animator>();
                 collision.gameObject.GetComponent<moveToPlaye>().movement = false;
                 audioS.clip = bbPain;
-                audioS.Play();
+              //  audioS.Play();
                 anime.SetBool("Dead", true);
                 dead = true;
                 collision.gameObject.GetComponent<DestroyOgre>().ActivateTimer();

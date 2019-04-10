@@ -1072,7 +1072,7 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 666490297}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 018d98588e1be30429f605489b90bc1c, type: 3}
@@ -1795,7 +1795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jc_ind: 0
   particle: {fileID: 1531685282674282, guid: a9e33e795ab771142889818753c8d39a, type: 2}
-  damage: {fileID: 8300000, guid: 420b4016e972af3419c2e5b5e5fd3d2a, type: 3}
+  damage: {fileID: 8300000, guid: f55298f8a00db2e458d87897ad4a9a86, type: 3}
   gameOverText: {fileID: 1398392407}
   gameOver: 0
   a: 0
@@ -1851,7 +1851,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 420b4016e972af3419c2e5b5e5fd3d2a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f55298f8a00db2e458d87897ad4a9a86, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3974,7 +3974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jc_ind: 0
   particle: {fileID: 1531685282674282, guid: a9e33e795ab771142889818753c8d39a, type: 2}
-  damage: {fileID: 8300000, guid: 420b4016e972af3419c2e5b5e5fd3d2a, type: 3}
+  damage: {fileID: 8300000, guid: f55298f8a00db2e458d87897ad4a9a86, type: 3}
   gameOverText: {fileID: 0}
   gameOver: 0
   a: 0
@@ -4032,7 +4032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f6b2033fa901b46a077098b2e2484e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: {fileID: 8300000, guid: 420b4016e972af3419c2e5b5e5fd3d2a, type: 3}
+  damage: {fileID: 8300000, guid: f55298f8a00db2e458d87897ad4a9a86, type: 3}
 --- !u!82 &1786503788
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4042,8 +4042,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 420b4016e972af3419c2e5b5e5fd3d2a, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: f55298f8a00db2e458d87897ad4a9a86, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

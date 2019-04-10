@@ -32,10 +32,10 @@ public class cull : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        r = overlayImage.color.r;
-        g = overlayImage.color.g;
-        b = overlayImage.color.b;
-        a = overlayImage.color.a;
+        //r = overlayImage.color.r;
+        //g = overlayImage.color.g;
+        //b = overlayImage.color.b;
+        //a = overlayImage.color.a;
 
         m_joy = JoyconManager.Instance.j;
         audioS = GetComponent<AudioSource>();
