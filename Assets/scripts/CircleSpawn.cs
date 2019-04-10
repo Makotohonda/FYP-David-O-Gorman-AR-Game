@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*This class is responsible for instntiating every enemy in the game
+ * in a random position around the players location*/
 
 namespace HoloToolkit.Unity.InputModule
 {
@@ -79,11 +81,16 @@ namespace HoloToolkit.Unity.InputModule
                 StartCoroutine(spawner());
             }
 
-
+            //checks if number is larger then 11 then deletes all remaining enemies in the array before 
+            //creating new ones in the next round
             if (script2.getDeadCount() >= 11)
             {
                 if (script2.GetGame() == false)
                 {
+                    for (int i = 0; i < objs.Length; i++)
+                    {
+                        Destroy(objs[i].gameObject);
+                    }
                     StartCoroutine(spawner());
                     StartCoroutine(script2.round());
                 }

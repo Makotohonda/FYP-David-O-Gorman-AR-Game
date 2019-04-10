@@ -4,25 +4,28 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/*This was an early iteration class used for the detection of collision
+  *between the enemies and the player, 
+  *It was used for Joycon feedback and also displaying visual feedback on the HUD each time the
+  * player was hit by an enemy however was removed for gameplay reasons */
+
 public class cull : MonoBehaviour {
 
     private List<Joycon> m_joy;
     public int jc_ind = 0;
     GameObject other;
     public GameObject particle;
-    //private bool gameOver;
     AudioSource audioS;
     public AudioClip damage;
     public Text gameOverText;
     public bool gameOver;
-
-    public Image overlayImage;
   
     private float r;
     private float g;
     private float b;
     public float a;
 
+    public Image overlayImage;
     public Text loseText;
     public Canvas canv;
 
@@ -35,10 +38,8 @@ public class cull : MonoBehaviour {
         a = overlayImage.color.a;
 
         m_joy = JoyconManager.Instance.j;
-
         audioS = GetComponent<AudioSource>();
-      //  audioS.Play();
-
+        //audioS.Play();
     }
 
     public bool GetGame()
@@ -55,7 +56,8 @@ public class cull : MonoBehaviour {
     void Update()
     {
         AdjustColor();
-
+        ///Commeneted out code related to the implementation of the Joycon command
+        ///left in to show the implementation of the JoyCon was present
         //if (m_joy.Count > 0)
         //{
         //    Joycon j = m_joy[jc_ind];
@@ -65,62 +67,40 @@ public class cull : MonoBehaviour {
         //{
         //    Destroy(gameObject);
         //}
-
     }
-
 
     public void OnCollisionEnter(Collision collision)
     {
             a += 0.05f;
-         //   Debug.Log(a);
-
         if (collision.gameObject.tag == "Cube")
         {
             Instantiate(particle, transform.position, transform.rotation);
-           // Destroy(collision.gameObject);
-           // audioS.Play();
             Destroy(particle);
-
         }
 
         if (a >= 0.5f)
         {
             gameOver = true;
-         //   Debug.Log("Game Over");
         }
-
 
         if (gameOver == true)
         {
-            changeScene(0);
+          //  changeScene(0);
         }
+
+        /*If a controller is connected and and the player is hit by and enemy
+         * then the connected JoyCon will rumble
+            will work when the game is played in editor and not on device*/
         if (m_joy.Count > 0)
         {
             Joycon j = m_joy[jc_ind];
-       //     j.SetRumble(160, 320, 0.6f, 200);
-
+            //j.SetRumble(160, 320, 0.6f, 200);
         }
-
-
     }
 
     private void AdjustColor()
     {
      // Color c = new Color(r, g, b, a);
      // overlayImage.color = c;
-
-    }
-
-    private void LoseGame()
-    {
-
-
-    }
-
-    private void changeScene(int scene)
-    {
-        //  yield return new WaitForSeconds(5);
-        //SceneManager.UnloadSceneAsync(scene - 1);
-       /// SceneManager.LoadScene(scene, LoadSceneMode.Single);
     }
 }

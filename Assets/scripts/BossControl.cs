@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*This class is used to control the bosses the movement
+ * Ensures that the boss is always facing and moving towards the
+ * players current location */ 
 
 namespace HoloToolkit.Unity.InputModule
 {

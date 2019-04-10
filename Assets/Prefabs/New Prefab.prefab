@@ -1165,7 +1165,7 @@ GameObject:
   - component: {fileID: 114536337892157740}
   - component: {fileID: 82672081977316324}
   - component: {fileID: 114993537968603640}
-  - component: {fileID: 114385185615126066}
+  - component: {fileID: 114668085147920836}
   m_Layer: 9
   m_Name: New Prefab
   m_TagString: Cube
@@ -2744,17 +2744,6 @@ MonoBehaviour:
   gameObject: {fileID: 1948539700667238}
   anim: {fileID: 95640172099066958}
   movement: 1
---- !u!114 &114385185615126066
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1948539700667238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56e259869b1e56849ab26a61d2be61f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114536337892157740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2782,6 +2771,17 @@ MonoBehaviour:
   cursor: {fileID: 1617024140600966, guid: 1301387a0c51c914aa2abd926f9c3950, type: 2}
   speed: 0.05
   orbitDegreesPerSec: 180
+--- !u!114 &114668085147920836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1948539700667238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f10a5b59e6e62184182447c3aae04416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114993537968603640
 MonoBehaviour:
   m_ObjectHideFlags: 1

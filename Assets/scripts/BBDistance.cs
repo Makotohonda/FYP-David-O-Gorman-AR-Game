@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This class is used to check the distance of the Boss to the playes location
 public class BBDistance : MonoBehaviour {
 
     Animator animator;

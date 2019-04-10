@@ -25,7 +25,8 @@ namespace HoloToolkit.Unity.InputModule
         void Update()
         {
 
-            //sets the deletion of the ogre onto a timer so the death animation can play out
+            //sets the deletion of the ogre onto a timer so the death animation can play out 
+            //once animation is complete deletes the ogre
             if (startTime)
             {
                 //timer

@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+
+/* I used this script in early iterations of my pproject
+ * edited heavily to support what I needed for it
+ * The Hololens does not suppport multithreading so JoyCons physically will not work with the Hololens
+ * I Implemented necessary lines to support transfer of data to server
+ * I intended to transfer the gyroscope and rotation data to a server which would then send to the Hololens
+ * This method is a work around for the multithreading, However I took the project in a different direction
+ * and abandoned this method due to limitations and time management
+ */
 public class JoyconDemo : MonoBehaviour {
 	
 	private List<Joycon> joycons;

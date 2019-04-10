@@ -6,13 +6,17 @@ using UnityEngine;
 using UnityEngine.Windows.Speech;
 using UnityEngine.UI;
 
+/* This class handles the players third form of attack which is using voice
+ * command "Bolt" to strike a lightning bolt down on their enemies */
+
 namespace HoloToolkit.Unity.InputModule
 {
 
     public class voiceStrike : MonoBehaviour
     {
-
+        
         private KeywordRecognizer keywordRecognizer;
+        //creates new dictionary and adds string to it
         private Dictionary<string, Action> actions = new Dictionary<string, Action>();
         public Transform cameraTransform;
         bool strike = false;
@@ -39,8 +43,9 @@ namespace HoloToolkit.Unity.InputModule
         // Use this for initialization
         void Start()
         {
-
+            //creates new action and assigns string "Bolt" and connects it to the function Fire
             actions.Add("Bolt", Fire);
+            //adds the action to the dictionary
             keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
             keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
             keywordRecognizer.Start();
@@ -50,29 +55,20 @@ namespace HoloToolkit.Unity.InputModule
             g = imageC.color.g;
             b = imageC.color.b;
             a = imageC.color.a;
-
-            //imageC = GetComponent<Image>();
-            //tempColor = imageC.color;
-
-            //imageC.color = tempColor;
         }
-
 
         // Update is called once per frame
         void Update()
         {
             AdjustColor();
+            //updates the resulting position with every update and lets it equal to the lights positison
             Vector3 resultingPosition = cameraTransform.position + cameraTransform.forward * distanceFromCamera;
             light.transform.position = new Vector3(resultingPosition.x, resultingPosition.y, resultingPosition.z);
-           // imageC.color = new Color(r, g, b, a);
-          //  Debug.Log("coooldown:" + cooldown);
 
-            //if (Input.GetKeyDown("space"))
-            //{
-            //    Debug.Log("space");
-            //    trigger = true;
-            //    Fire();
-            //}
+
+            /*this trigger to instantiate the lightning bolt relies on raycasting,
+             * it projects forward from where the player is looking in the room and if they
+             are currently looking at an enemy when they say bolt than the action will be triggered*/
             if(trigger == true)
             {
                 RaycastHit[] hits;
@@ -100,70 +96,55 @@ namespace HoloToolkit.Unity.InputModule
                     timer = 0;
                     trigger = false;
                 }
-                // Instantiate( light, resultingPosition, transform.rotation * Quaternion.Euler(0, 0, 90));
-                //  Fire();
-               // audioS.clip = lightA;
-              //  audioS.Play();
-               
-                // lightA.Play();
             }
         
+            //increases the alpha on the indicator and indicates when it possible to use again
             if (cooldown > 0)
             {
-                a += 0.0005f;
+                a += 0.005f;
                 cooldown -= Time.deltaTime;
-                //AdjustColor();
             }
+            //when the cooldown has reached zero the indicator will start spinning to show it can be used again
             if (cooldown <= 0)
             {
                 speed = 26;
                 imageC.transform.Rotate(new Vector3(0, 0, 1) * Time.deltaTime * speed);
-            }
-                
+            }    
         }
 
+        //listens for the correct voice command
         private void RecognizedSpeech(PhraseRecognizedEventArgs speech)
         {
             Debug.Log(speech.text);
             actions[speech.text].Invoke();
         }
 
-
+        //this is the function being called when the user says "Fire"
         private void Fire()
         {
             if (cooldown <= 0)
             {
-               // transform.Translate(0, 0, 0);
                 trigger = true;
                 strike = true;
                 cooldown = 10;
                 speed = 0f;
                 a = 0f;
-              //  imageC.color = new Color(imageC.color.r, imageC.color.g, imageC.color.b, 0);
-               // imageC.color = tempColor;
-                //tempColor.Image.ChangeAlpha(0f);
                 Debug.Log(a);
-          
            }
-            // Instantiate(light, resultingPosition, transform.rotation * Quaternion.Euler(0, 0, 90));
-            //light.transform.rotation.y += 90;
         }
 
+        //destroys the prefab in temp and destroys the particle
         void Kill()
-        {
-            
+        {   
             Destroy(temp);
             Destroy(particle);
-
         }
 
+        //function for setting the indicators position
         void AdjustColor()
         {
             Color c = new Color(r, g, b, a);
-            imageC.color = c;
-            
+            imageC.color = c; 
         }
-
     }
-
 }

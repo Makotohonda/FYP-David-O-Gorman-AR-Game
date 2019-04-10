@@ -5,6 +5,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
 
+
+/*This class is used to operate the players secondary weapon
+ * The ball is launched forward in the direction the player faces
+ * This weapon is voice activated, when the player says the correct word
+ */
 namespace HoloToolkit.Unity.InputModule
 {
 
@@ -44,7 +49,7 @@ namespace HoloToolkit.Unity.InputModule
         void Update()
         {
             //Debugging in editor command for firing
-            if (Input.GetKeyDown("space"))
+            if (Input.GetKeyDown("r"))
             {
                 ballT();
             }
@@ -91,7 +96,6 @@ namespace HoloToolkit.Unity.InputModule
                 anime.SetBool("Dead", true);
                 collision.gameObject.GetComponent<DestroyOgre>().ActivateTimer();
                 Destroy(gameObject);
-
             }
 
         }

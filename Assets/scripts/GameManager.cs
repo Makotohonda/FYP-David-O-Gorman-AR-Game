@@ -9,8 +9,6 @@ using UnityEngine.Windows.Speech;
 
 namespace HoloToolkit.Unity.InputModule
 {
-
-
     public class GameManager : MonoBehaviour
     {
         // Creates Keyword recognizer 
@@ -116,7 +114,7 @@ namespace HoloToolkit.Unity.InputModule
         {
             score += num;
         }
-        //This funtion decrease rthe players health and will end game if reaches zero 
+        //This funtion decreases the players health and will end game if reaches zero 
         public void DecreaseHealth(int num)
         {
             playerHealth -= num;
@@ -167,7 +165,6 @@ namespace HoloToolkit.Unity.InputModule
             if (gameHalt == true)
             {
                 RestartGame();
-                Destroy(yesBox);
                 gameHalt = false;
                 speed = 1f;
             }

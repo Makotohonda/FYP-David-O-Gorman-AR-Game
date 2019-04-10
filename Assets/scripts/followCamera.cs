@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*This class is used to send the players main weapon forward
+ * the hammer constantly tracks the players position
+ * fires forward until reaching max distance and the comes back
+ * Also handles collision with each necessary enemy */
+
 namespace HoloToolkit.Unity.InputModule
 {
 
@@ -38,7 +43,7 @@ namespace HoloToolkit.Unity.InputModule
         void Update()
         {
             // Takes the direction that the player is facing and sets the hammers position to the resulting position
-            //launches the hammer in the direction that th player is facing N
+            //launches the hammer in the direction that th player is facing
             Vector3 resultingPosition = cameraTransform.position + cameraTransform.forward * distanceFromCamera;
             hammer.transform.position = new Vector3(resultingPosition.x, resultingPosition.y, resultingPosition.z);
             resultPos = resultingPosition;

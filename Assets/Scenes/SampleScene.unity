@@ -1207,7 +1207,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 175, y: -198}
+  m_AnchoredPosition: {x: 150, y: -198}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &679892656
@@ -1454,7 +1454,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 204.2, y: -176}
+  m_AnchoredPosition: {x: 192, y: -176}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &808296801
@@ -1798,8 +1798,8 @@ MonoBehaviour:
   damage: {fileID: 8300000, guid: 420b4016e972af3419c2e5b5e5fd3d2a, type: 3}
   gameOverText: {fileID: 1398392407}
   gameOver: 0
-  overlayImage: {fileID: 0}
   a: 0
+  overlayImage: {fileID: 0}
   loseText: {fileID: 0}
   canv: {fileID: 0}
 --- !u!65 &962710667
@@ -1980,9 +1980,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1120735063}
   - component: {fileID: 1120735062}
-  - component: {fileID: 1120735065}
   - component: {fileID: 1120735066}
   - component: {fileID: 1120735067}
+  - component: {fileID: 1120735065}
   - component: {fileID: 1120735064}
   - component: {fileID: 1120735068}
   m_Layer: 0
@@ -2008,8 +2008,6 @@ MonoBehaviour:
   scoreText: {fileID: 721421749}
   gameOverText: {fileID: 1398392407}
   jc_ind: 0
-  yesBox: {fileID: 1081187496050340, guid: 835359fbe07e5754c8b5f644091e6feb, type: 2}
-  noBox: {fileID: 1319265274890526, guid: 30dc4a870e3dfdb4a9d56ba245c5395a, type: 2}
   restartText: {fileID: 780958049}
   gyro: {x: 0, y: 0, z: 0}
   gameHalt: 0
@@ -2136,12 +2134,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1120735061}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd2578358e7008c489a692fdd6a67c8a, type: 3}
+  m_Script: {fileID: 11500000, guid: 70bd36e71d8b6dd4b959fb4a422d1375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 
   healthI: 0
-  canv: {fileID: 0}
+  canv: {fileID: 92450411}
   healthtxt: {fileID: 2064496465}
   playerHealthC: {fileID: 1120735062}
 --- !u!114 &1120735066
@@ -2227,7 +2225,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 293, y: -198}
+  m_AnchoredPosition: {x: 277, y: -198}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1120906103
@@ -3021,7 +3019,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 369a7c08cbdb0984fb44b7d128f38d31, type: 3}
-    m_FontSize: 28
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -3979,8 +3977,8 @@ MonoBehaviour:
   damage: {fileID: 8300000, guid: 420b4016e972af3419c2e5b5e5fd3d2a, type: 3}
   gameOverText: {fileID: 0}
   gameOver: 0
-  overlayImage: {fileID: 0}
   a: 0
+  overlayImage: {fileID: 0}
   loseText: {fileID: 0}
   canv: {fileID: 0}
 --- !u!65 &1786503784
