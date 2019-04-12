@@ -84,8 +84,8 @@ public class cull : MonoBehaviour {
         }
 
         /*If a controller is connected and and the player is hit by and enemy
-         * then the connected JoyCon will rumble
-            will work when the game is played in editor and not on device*/
+         *then the connected JoyCon will rumble
+         will work when the game is played in editor and not on device*/
         if (m_joy.Count > 0)
         {
             Joycon j = m_joy[jc_ind];

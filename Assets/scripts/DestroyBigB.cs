@@ -8,17 +8,15 @@ namespace HoloToolkit.Unity.InputModule
     
     public class DestroyBigB : MonoBehaviour
     {
-
         bool startTime = false;
         float count = 0;
         GameObject manager;
 
-
+        //sets time to true
         public void ActivateTimer()
         {
             startTime = true;
         }
-
 
         // Use this for initialization
         void Start()
@@ -40,7 +38,6 @@ namespace HoloToolkit.Unity.InputModule
                     manager.GetComponent<GameManager>().IncreaseDeadCount();
                     Destroy(gameObject);
                     count = 0;
-
                 }
             }
         }

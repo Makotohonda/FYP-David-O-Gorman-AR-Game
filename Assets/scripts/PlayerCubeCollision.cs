@@ -34,8 +34,8 @@ namespace HoloToolkit.Unity.InputModule
             if (collision.gameObject.tag == "Cube")
             {
                 manager.GetComponent<GameManager>().DecreaseHealth(10);
-                // PlayClip(damge);
-              //  audioS.Play();
+                //PlayClip(damge);
+                //audioS.Play();
             }
         }
     }

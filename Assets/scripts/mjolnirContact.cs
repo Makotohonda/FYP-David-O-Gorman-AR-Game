@@ -6,10 +6,8 @@ using UnityEngine.UI;
 /*This script is used to detect the contatct between the hamme and different types of enemies*/
 namespace HoloToolkit.Unity.InputModule
 {
-
     public class mjolnirContact : MonoBehaviour
     {
-
         bool dead = false;
         public GameObject particle;
         GameObject manager;
@@ -59,7 +57,7 @@ namespace HoloToolkit.Unity.InputModule
                 Animator anime = collision.gameObject.GetComponent<Animator>();
                 collision.gameObject.GetComponent<moveToPlaye>().movement = false;
                 audioS.clip = bbPain;
-              //  audioS.Play();
+                //audioS.Play();
                 anime.SetBool("Dead", true);
                 dead = true;
                 collision.gameObject.GetComponent<DestroyOgre>().ActivateTimer();
@@ -68,7 +66,6 @@ namespace HoloToolkit.Unity.InputModule
             /*checks the collision of the boss and the hammer, 
              if collision detected, decrements health , starts deletions counter after reaching zero
             */
-
             if (collision.gameObject.tag == "bigBoss")
             {
                 bbHealth -= 10;

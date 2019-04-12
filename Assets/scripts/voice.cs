@@ -20,7 +20,6 @@ public class voice : MonoBehaviour {
         actions.Add("Up", Up);
         actions.Add("Down", Down);
 
-
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
         keywordRecognizer.Start();
@@ -32,26 +31,20 @@ public class voice : MonoBehaviour {
         actions[speech.text].Invoke();
     }
 
-
     private void Forward()
     {
         transform.Translate(1, 0, 0);
-
     }
     private void Backwards()
     {
         transform.Translate(-1, 0, 0);
-
     }
     private void Up()
     {
         transform.Translate(0, 1, 0);
-
     }
     private void Down()
     {
         transform.Translate(0, -1, 0);
-
     }
-
 }

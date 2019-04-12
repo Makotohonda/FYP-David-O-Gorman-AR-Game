@@ -4,11 +4,8 @@ using UnityEngine;
 
 namespace HoloToolkit.Unity.InputModule
 {
-
-
     public class TapHammer : MonoBehaviour, IInputClickHandler, IInputHandler
     {
-
         AudioSource audioS;
         public AudioClip woosh;
         public GameObject hammer;
@@ -23,7 +20,7 @@ namespace HoloToolkit.Unity.InputModule
 
         void Start()
         {
-           // manager = GameObject.FindWithTag("GameManager");
+           //manager = GameObject.FindWithTag("GameManager");
             audioS = GetComponent<AudioSource>();
             audioS.Play();
             initial_pos = hammer.transform.position;
@@ -35,7 +32,6 @@ namespace HoloToolkit.Unity.InputModule
             Vector3 rotation = new Vector3(200, 0, 0);
             Vector3 rotationC = Camera.main.transform.rotation.eulerAngles;
 
-          
             if (swing == true)
             {
                 timer += 1/60f;
@@ -52,7 +48,6 @@ namespace HoloToolkit.Unity.InputModule
                 }
             }
 
-
             if (returnTo == true)
             {
                 Vector3 returnPos = hammer.transform.position - initial_pos;
@@ -66,12 +61,10 @@ namespace HoloToolkit.Unity.InputModule
                 }
             }
 
-
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 swing = true;
-                hammer.transform.eulerAngles = new Vector3(0, 0, 0);
-              
+                hammer.transform.eulerAngles = new Vector3(0, 0, 0);              
                // hammer.transform.rotate = Vector3.MoveTowards(hammer.transform.rotate, target * distance, speed / 2);
             }
 
@@ -84,16 +77,14 @@ namespace HoloToolkit.Unity.InputModule
         public void OnInputClicked(InputClickedEventData eventData)
         {
             swing = true;
-
         }
 
         public void OnInputDown(InputEventData eventData)
         {
-            //    AudioSource.PlayClipAtPoint(boom, this.transform.position);
-
-            //  Instantiate(particle, transform.position, transform.rotation);
+            //AudioSource.PlayClipAtPoint(boom, this.transform.position);
+            //Instantiate(particle, transform.position, transform.rotation);
             swing = true;
-            //  this.hammer.transform.localScale = new Vector3(this.gameObject.transform.translate.x * 2, 0, 0);
+            //this.hammer.transform.localScale = new Vector3(this.gameObject.transform.translate.x * 2, 0, 0);
             audioS.Play();
             Debug.Log(swing);
             Destroy(audioS);
@@ -103,8 +94,8 @@ namespace HoloToolkit.Unity.InputModule
         public void OnInputUp(InputEventData eventData)
         {
             swing = true;
-          //  Vector3 target = Camera.main.transform.forward;
-           // hammer.transform.position = Vector3.MoveTowards(hammer.transform.position, target * distance, speed / 2);
+            //Vector3 target = Camera.main.transform.forward;
+           //hammer.transform.position = Vector3.MoveTowards(hammer.transform.position, target * distance, speed / 2);
         }
     }
 }

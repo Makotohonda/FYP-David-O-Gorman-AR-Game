@@ -31,10 +31,13 @@ namespace HoloToolkit.Unity.InputModule
             audioS.Play();
         }
 
+        //returns the goBack bool
         public bool isAtMaxDistance()
         {
             return goBack;
         }
+
+        //returns the resulting position for the hammer
         public Vector3 getPosition()
         {
             return resultPos;

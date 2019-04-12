@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Windows.Speech;
 
 public class voiceThrow : MonoBehaviour {
+
     private KeywordRecognizer keywordRecognizer;
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
     public Transform cameraTransform;
@@ -14,12 +15,11 @@ public class voiceThrow : MonoBehaviour {
     bool goBack = false;
     bool trigger = false;
     public GameObject hammer;
-  //  public AudioClip whoosh;
+    //public AudioClip whoosh;
 
     void Start()
     {
         actions.Add("fire", Fire);
-       
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
         keywordRecognizer.Start();
@@ -27,17 +27,16 @@ public class voiceThrow : MonoBehaviour {
 
     void Update()
     {
-
         Vector3 resultingPosition = cameraTransform.position + cameraTransform.forward * distanceFromCamera;
         hammer.transform.position = new Vector3(resultingPosition.x, resultingPosition.y, resultingPosition.z);
 
         if (Input.GetKeyDown("space"))
-       // if (trigger == true)
+        //if(trigger == true)
         {
             launch = true;
             trigger = false;
         }
-        //  Debug.Log(trigger);
+        //Debug.Log(trigger);
         if (launch)
         {
             if ((distanceFromCamera < 10) && goBack == false)
@@ -62,8 +61,6 @@ public class voiceThrow : MonoBehaviour {
                 distanceFromCamera = -1;
             }
         }
-
-
     }
 
     private void RecognizedSpeech(PhraseRecognizedEventArgs speech)
@@ -72,13 +69,9 @@ public class voiceThrow : MonoBehaviour {
         actions[speech.text].Invoke();
     }
 
-
     private void Fire()
     {
         transform.Translate(1, 0, 0);
         trigger = true;
     }
-   
-
-
 }

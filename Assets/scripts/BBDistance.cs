@@ -8,13 +8,13 @@ public class BBDistance : MonoBehaviour {
     Animator animator;
     public GameObject player;
 
-	// Use this for initialization
+	//Use this for initialization
 	void Start () {
         animator = gameObject.GetComponent<Animator>();
         player = GameObject.FindWithTag("PlayerBox");
     }
 	
-	// Update is called once per frame
+	//Update is called once per frame
 	void Update () {
         float dist = Vector3.Distance(player.transform.position, transform.position);
         animator.SetFloat("DistanceFromPlayer", dist);

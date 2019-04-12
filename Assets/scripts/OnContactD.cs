@@ -10,10 +10,8 @@ public class OnContactD : MonoBehaviour {
     GameObject other;
     public GameObject particle;
     public int jc_ind = 0;
-    // Use this for initialization
     public Text countText;
     public Text winText;
-
     private int count;
 
     void Start () {
@@ -30,9 +28,8 @@ public class OnContactD : MonoBehaviour {
         //Detect the amount of joycons detected to the game
         if (m_joy.Count > 0)
         {
-
             Joycon j = m_joy[jc_ind];
-            //  OnTriggerEnter();
+            // OnTriggerEnter();
         }
 	}
 
@@ -43,19 +40,15 @@ public class OnContactD : MonoBehaviour {
         // would be destroyed, 
         //if (m_joy.Count > 0)
         //{
-
         //    Joycon j = m_joy[jc_ind];
         //    //  OnTriggerEnter();
         //    Instantiate(particle, transform.position, transform.rotation);
         //    Debug.Log("Hit");
         //    count = count + 1;
         //    SetCountText();
-
-
         //    Destroy(collision.gameObject);
         //    j.SetRumble(160, 320, 0.6f, 200);
         //}
-      
     }
 
     void SetCountText()

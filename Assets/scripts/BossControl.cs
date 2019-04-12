@@ -32,10 +32,5 @@ namespace HoloToolkit.Unity.InputModule
                 transform.LookAt(player.transform.position);
             }
         }
-
-
-
-
-
     }
 }

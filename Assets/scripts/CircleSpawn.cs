@@ -70,6 +70,7 @@ namespace HoloToolkit.Unity.InputModule
                 {
                     Destroy(objs[i].gameObject);
                 }
+
                 Destroy(GameObject.FindWithTag("bigBoss"));
 
                 script2.restartG = false;
@@ -89,6 +90,7 @@ namespace HoloToolkit.Unity.InputModule
                     StartCoroutine(spawner());
                     StartCoroutine(script2.round());
                 }
+
                 Vector3 center = transform.position;
                 int a = Random.Range(-0, 359);
                 Vector3 pos = RandomCircle(center, 1.0f, a);
