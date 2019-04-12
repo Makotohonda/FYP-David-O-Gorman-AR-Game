@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*This script is used to detect the contatct between the hamme and different types of enemies*/
 namespace HoloToolkit.Unity.InputModule
 {
 

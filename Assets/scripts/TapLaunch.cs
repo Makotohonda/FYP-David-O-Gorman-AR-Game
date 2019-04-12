@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//First itereation of my tapThrow, used to test and see the responsivness of hand gestures working for in game commands
 
 namespace HoloToolkit.Unity.InputModule
 {

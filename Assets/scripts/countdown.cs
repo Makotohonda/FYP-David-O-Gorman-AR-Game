@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Short script to activate timer on game start up, The game will count down from 3 to 1
+//the game will then begin
+
 public class countdown : MonoBehaviour {
 
     int time, a;

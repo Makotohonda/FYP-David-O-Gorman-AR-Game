@@ -65,7 +65,6 @@ namespace HoloToolkit.Unity.InputModule
             Vector3 resultingPosition = cameraTransform.position + cameraTransform.forward * distanceFromCamera;
             light.transform.position = new Vector3(resultingPosition.x, resultingPosition.y, resultingPosition.z);
 
-
             /*this trigger to instantiate the lightning bolt relies on raycasting,
              * it projects forward from where the player is looking in the room and if they
              are currently looking at an enemy when they say bolt than the action will be triggered*/

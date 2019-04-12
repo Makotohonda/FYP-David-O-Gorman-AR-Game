@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+//This class is used to keep track of the in game Timer and dictates the round and when it ends.
+
 public class Timer : MonoBehaviour {
 
     public Text countText;
@@ -24,19 +27,15 @@ public class Timer : MonoBehaviour {
         string timerString = string.Format("{0:0}", seconds);
 
         countText.text = timerString;
-
-      
-
     }
 
     void roundNumberV() {
 
         if(round1 == true)
         {
-            roundNumber = roundNumber + 1;
-          //  Debug.Log(roundNumber);
-            
-                string roundString = string.Format("Round: ", roundNumber);
+          roundNumber = roundNumber + 1;
+          //Debug.Log(roundNumber);
+          string roundString = string.Format("Round: ", roundNumber);
 
             //for (int i = 0; i <= 10; i++)
             //{
@@ -44,7 +43,6 @@ public class Timer : MonoBehaviour {
             //}
             roundTimer = 0;
             round1 = false;
-
         }
 
         if (round2 == true)
@@ -55,14 +53,11 @@ public class Timer : MonoBehaviour {
             roundText.text = roundString;
             roundTimer = 0;
             round2 = false;
-
         }
 
         if (round3 == true)
         {
 
         }
-
     }
-
 }

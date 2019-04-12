@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This script is used to make the Hammer constantly rotate as it is thrown
 public class rotateHammer : MonoBehaviour {
 
     int speed = 1000;

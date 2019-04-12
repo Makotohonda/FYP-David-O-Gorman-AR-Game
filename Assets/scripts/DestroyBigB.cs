@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace HoloToolkit.Unity.InputModule
 {
+    //This class is used to delete the Boss after the animation has played.
+    
     public class DestroyBigB : MonoBehaviour
     {
 
@@ -29,9 +31,10 @@ namespace HoloToolkit.Unity.InputModule
         {
             if (startTime)
             {
-                //timer
+                //timer counts up by seconds
                 count += Time.deltaTime;
 
+                //if  the count is bigger than three, check to see what the ogres health is, if zero on, then destroy object
                 if (count >= 3)
                 {
                     manager.GetComponent<GameManager>().IncreaseDeadCount();

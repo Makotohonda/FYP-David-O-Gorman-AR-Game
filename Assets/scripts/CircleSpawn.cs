@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 namespace HoloToolkit.Unity.InputModule
 {
-
     public class CircleSpawn : MonoBehaviour
     {
         int numObjects = 12;
@@ -39,10 +38,8 @@ namespace HoloToolkit.Unity.InputModule
             gameOver = false;
             restart = false;
             gameOverText.text = "";
-            StartCoroutine(spawner());
-           
+            StartCoroutine(spawner());  
         }
-
 
         void Update()
         {
@@ -69,15 +66,13 @@ namespace HoloToolkit.Unity.InputModule
             //Sets restart to false and then calls the spawner co routine to begin
             if (script2.restart() == true)
             {
-                
                 for (int i = 0; i < objs.Length; i++)
                 {
                     Destroy(objs[i].gameObject);
                 }
                 Destroy(GameObject.FindWithTag("bigBoss"));
 
-
-                 script2.restartG = false;
+                script2.restartG = false;
                 StartCoroutine(spawner());
             }
 
@@ -100,7 +95,6 @@ namespace HoloToolkit.Unity.InputModule
                 AudioSource.PlayClipAtPoint(bigBossSpawn, this.transform.position * script2.speed);
                 Instantiate(bigBoss, pos, Quaternion.identity);
                 script2.ResetDeadCount();
-
             }
         }
         //Creates random spawn points around the radius of a set sized circle
@@ -124,7 +118,6 @@ namespace HoloToolkit.Unity.InputModule
                 yield return new WaitForSeconds(1);
                 script2.roundNm = 1;
             }
-
         }
 
         /*spawner function which runs through and array and instantiates an enemy prefab to a random positon
@@ -140,32 +133,37 @@ namespace HoloToolkit.Unity.InputModule
                 Vector3 pos = RandomCircle(center, 1.0f, a);
                 yield return new WaitForSeconds(3);
                 int b = Random.Range(-0, 6);
-
+                //location 1
                 if (b == 0)
                 {
                     AudioSource.PlayClipAtPoint(spawn, this.transform.position * script2.speed);
                     objs[i] = Instantiate(prefab, pos, Quaternion.identity);
                 }
+                //location 2
                 if (b == 1)
                 {
                     AudioSource.PlayClipAtPoint(spawnC, this.transform.position * script2.speed);
                     objs[i] = Instantiate(prefab, pos, Quaternion.identity);
                 }
+                //location 3
                 if (b == 2)
                 {
                     AudioSource.PlayClipAtPoint(spawnB, this.transform.position * script2.speed);
                     objs[i] = Instantiate(prefab, pos, Quaternion.identity);
                 }
+                //location 4
                 if (b == 3)
                 {
                     AudioSource.PlayClipAtPoint(spawn, this.transform.position * script2.speed);
                     objs[i] = Instantiate(prefab, pos, Quaternion.identity);
                 }
+                //location 5
                 if (b == 4)
                 {
                     AudioSource.PlayClipAtPoint(spawnC, this.transform.position * script2.speed);
                     objs[i] = Instantiate(prefab, pos, Quaternion.identity);
                 }
+                //location 6
                 if (b == 5)
                 {
                     AudioSource.PlayClipAtPoint(spawnB, this.transform.position * script2.speed);

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This script is used to destroy the main enemies after a set amount of time
+//The script will delete the object after three seconds, enough time to play the animation
+
 namespace HoloToolkit.Unity.InputModule
 {
     public class DestroyOgre : MonoBehaviour

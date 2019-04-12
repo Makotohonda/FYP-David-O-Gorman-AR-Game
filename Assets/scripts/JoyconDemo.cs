@@ -26,16 +26,16 @@ public class JoyconDemo : MonoBehaviour {
 
     void Start()
     {
-        // A correct website page.
+        //A correct website page.
         StartCoroutine(GetRequest("https://sleepy-scrubland-59454.herokuapp.com/"));
 
-        // A non-existing page.
-        //  StartCoroutine(GetRequest("https://error.html"));
+        //A non-existing page.
+        //StartCoroutine(GetRequest("https://error.html"));
         middle = new Vector3(180, 180, 180);
-        // gyro = new Vector3(180, 180, 180);
+        //gyro = new Vector3(180, 180, 180);
         gyro = new Vector3(0, 0, 0);
         accel = new Vector3(0, 0, 0);
-        //      // get the public Joycon array attached to the JoyconManager in scene
+        //get the public Joycon array attached to the JoyconManager in scene
          joycons = JoyconManager.Instance.j;
         if (joycons.Count < jc_ind+1){
         	Destroy(gameObject);
@@ -47,7 +47,7 @@ public class JoyconDemo : MonoBehaviour {
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
         {
-            // Request and wait for the desired page.
+            //Request and wait for the desired page.
             yield return webRequest.SendWebRequest();
 
             string[] pages = uri.Split('/');
@@ -76,6 +76,8 @@ public class JoyconDemo : MonoBehaviour {
   //      StartCoroutine(Upload());
  //   }
 
+
+        //set up address to send data to the server I created using Heroku
     IEnumerator Upload()
     {
         byte[] myData = System.Text.Encoding.UTF8.GetBytes("This is some test data");

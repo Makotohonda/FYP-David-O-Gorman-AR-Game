@@ -16,12 +16,8 @@ using UnityEngine.UI;
 
 namespace HoloToolkit.Unity.InputModule
 {
-
-
     public class VoiceHUD : MonoBehaviour
     {
-
-
         public string health;
         public int healthI;
         float count = 0;
@@ -36,7 +32,6 @@ namespace HoloToolkit.Unity.InputModule
         // Use this for initialization
         void Start()
         {
-
             //on start creates an actions called "Health" when command is entered will get the Caller function
             actions.Add("Health", caller);
 
@@ -59,7 +54,6 @@ namespace HoloToolkit.Unity.InputModule
                     healthtxt.enabled = false;
                     count = 0;
                 }
-
             }
             //bedugging command for getting the caller function
             if (Input.GetKeyDown("space"))

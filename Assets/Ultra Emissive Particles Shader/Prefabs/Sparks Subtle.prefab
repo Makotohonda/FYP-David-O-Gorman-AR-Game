@@ -10,6 +10,7 @@ GameObject:
   - component: {fileID: 410886}
   - component: {fileID: 19848952}
   - component: {fileID: 19950378}
+  - component: {fileID: 114876510424153820}
   m_Layer: 0
   m_Name: Sparks Subtle
   m_TagString: Untagged
@@ -4942,3 +4943,14 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 197494}
   m_IsPrefabAsset: 1
+--- !u!114 &114876510424153820
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e762368f7f14d142a8f4380aa83a9b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

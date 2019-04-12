@@ -56,6 +56,7 @@ public class cull : MonoBehaviour {
     void Update()
     {
         AdjustColor();
+
         ///Commeneted out code related to the implementation of the Joycon command
         ///left in to show the implementation of the JoyCon was present
         //if (m_joy.Count > 0)
@@ -71,21 +72,15 @@ public class cull : MonoBehaviour {
 
     public void OnCollisionEnter(Collision collision)
     {
-            a += 0.05f;
+        a += 0.05f;
         if (collision.gameObject.tag == "Cube")
         {
             Instantiate(particle, transform.position, transform.rotation);
-            Destroy(particle);
         }
 
         if (a >= 0.5f)
         {
             gameOver = true;
-        }
-
-        if (gameOver == true)
-        {
-          //  changeScene(0);
         }
 
         /*If a controller is connected and and the player is hit by and enemy

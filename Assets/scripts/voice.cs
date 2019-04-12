@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
 
+//Test Script to see if Voice commands would work, created to work with a cube
+//User could say "Forward", "Backward", "Left", "Right" and the cube would move in the corresponding direction
+//Was removed as the code was implemented into the game this script lost use. Kept to show development
 public class voice : MonoBehaviour {
 
     private KeywordRecognizer keywordRecognizer;

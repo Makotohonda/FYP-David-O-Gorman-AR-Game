@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Small script to keep track of the users ingame score
 public class score : MonoBehaviour {
 
     int time, a;
@@ -17,7 +18,6 @@ public class score : MonoBehaviour {
 
     void Start()
     {
-
         time = 2;
         count = true;
     }
@@ -28,19 +28,16 @@ public class score : MonoBehaviour {
 
     }
 
-
     public void OnCollisionEnter(Collision collision) {
 
         if (collision.collider.tag == "Cube")
         {
             SetCountText();
         }
-
     }
 
     void SetCountText()
     {
-
         m_score = m_score + 1;
         countText.text = "Score: " + m_score.ToString();
     }

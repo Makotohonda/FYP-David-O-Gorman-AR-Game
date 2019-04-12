@@ -7,6 +7,16 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Windows.Speech;
 
+/// <summary>
+/// Project created by David O'Gorman
+/// Fourth Year Project
+/// Game Creation in Augmented Reality Using Microsoft's HoloLens
+/// </summary>
+
+
+//This class is the Game Manager it handles the starting, ending and restarting of the game
+//It handles most actions and running of the application
+
 namespace HoloToolkit.Unity.InputModule
 {
     public class GameManager : MonoBehaviour
@@ -52,6 +62,7 @@ namespace HoloToolkit.Unity.InputModule
             keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
             keywordRecognizer.Start();
 
+            //Gets the players objects
             box = GameObject.FindWithTag("PlayerBox");
             m_joy = JoyconManager.Instance.j;
             culling = GameObject.FindWithTag("Culling");
@@ -109,7 +120,7 @@ namespace HoloToolkit.Unity.InputModule
         {
             return gameHalt;
         }
-
+        //Increses  the players score
         public void IncreaseScore(int num)
         {
             score += num;
@@ -151,7 +162,7 @@ namespace HoloToolkit.Unity.InputModule
             restartG = true;
         }
 
-       
+       //necessary empty collision function
         public void OnCollisionEnter(Collision collision)
         {
 
@@ -191,10 +202,9 @@ namespace HoloToolkit.Unity.InputModule
             }
 
             speed += .5f;
+            //Waits for five seconds before turning off the Round text
             yield return new WaitForSeconds(5);
             roundText.enabled = false;
-
-
         }
     }
 }

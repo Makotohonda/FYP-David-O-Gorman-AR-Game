@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//This class is used to detect collision between the player and the the enemeies
+//If collison between enemy and player than the player will lose 10 health with each hit
+//audio to indicate player was hit plays
+
 namespace HoloToolkit.Unity.InputModule
 {
 
@@ -31,9 +35,8 @@ namespace HoloToolkit.Unity.InputModule
             {
                 manager.GetComponent<GameManager>().DecreaseHealth(10);
                 // PlayClip(damge);
-                audioS.Play();
+              //  audioS.Play();
             }
-
         }
     }
 }
